@@ -1,6 +1,6 @@
-package trilhasbrasil.com.persistence.dao;
+package trilhasbrasil.com.persistencia.dao;
 
-import trilhasbrasil.com.persistence.beans.GrupoDeTrilheiros;
+import trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros;
 
 public interface GrupoDeTrilheirosDao extends GenericoDao<GrupoDeTrilheiros> { 
 	

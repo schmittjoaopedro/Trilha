@@ -1,6 +1,7 @@
-package trilhasbrasil.com.persistence.beans;
+package trilhasbrasil.com.persistencia.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,9 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
-public class Trilheiro implements Serializable {
+public class Evento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,17 +22,22 @@ public class Trilheiro implements Serializable {
 	
 	private String nome;
 	
-	private String email;
+	private Date date;
 	
-	private String telefone;
+	private String descricao;
+	
+	private Double custo;
 	
 	@OneToMany(targetEntity = Imagens.class)
-	private List<Imagens> imagens;
+	private List<Imagens> imagems;
+	
+	@ManyToOne
+	private Trilha trilha;
 	
 	@ManyToOne
 	private GrupoDeTrilheiros grupoDeTrilheiros;
 	
-	public Trilheiro() {}
+	public Evento() {}
 
 	public Long getId() {
 		return id;
@@ -50,28 +55,44 @@ public class Trilheiro implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public List<Imagens> getImagens() {
-		return imagens;
+	public Double getCusto() {
+		return custo;
 	}
 
-	public void setImagens(List<Imagens> imagens) {
-		this.imagens = imagens;
+	public void setCusto(Double custo) {
+		this.custo = custo;
+	}
+
+	public List<Imagens> getImagems() {
+		return imagems;
+	}
+
+	public void setImagems(List<Imagens> imagems) {
+		this.imagems = imagems;
+	}
+
+	public Trilha getTrilha() {
+		return trilha;
+	}
+
+	public void setTrilha(Trilha trilha) {
+		this.trilha = trilha;
 	}
 
 	public GrupoDeTrilheiros getGrupoDeTrilheiros() {

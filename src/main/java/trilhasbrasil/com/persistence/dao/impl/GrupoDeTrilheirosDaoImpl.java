@@ -6,8 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import trilhasbrasil.com.persistence.beans.GrupoDeTrilheiros;
-import trilhasbrasil.com.persistence.dao.GrupoDeTrilheirosDao;
+import trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros;
+import trilhasbrasil.com.persistencia.dao.GrupoDeTrilheirosDao;
 
 @Stateless
 public class GrupoDeTrilheirosDaoImpl implements GrupoDeTrilheirosDao {

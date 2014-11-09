@@ -1,4 +1,4 @@
-package trilhasbrasil.com.persistence.beans;
+package trilhasbrasil.com.persistencia.beans;
 
 import java.io.Serializable;
 import java.util.List;

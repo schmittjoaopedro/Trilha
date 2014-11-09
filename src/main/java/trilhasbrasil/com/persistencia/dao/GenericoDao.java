@@ -1,4 +1,4 @@
-package trilhasbrasil.com.persistence.dao;
+package trilhasbrasil.com.persistencia.dao;
 
 import java.util.List;
 

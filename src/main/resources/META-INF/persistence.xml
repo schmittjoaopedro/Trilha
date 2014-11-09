@@ -11,7 +11,7 @@
         	<property name="hibernate.hbm2ddl.auto" value="create"/>
 		</properties> 
 		
-		<class>trilhasbrasil.com.persistence.beans.GrupoDeTrilheiros</class>
+		<class>trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros</class>
 		
     </persistence-unit>
  

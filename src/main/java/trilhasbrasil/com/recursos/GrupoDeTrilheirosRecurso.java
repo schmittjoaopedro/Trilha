@@ -8,7 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 
-import trilhasbrasil.com.persistence.beans.GrupoDeTrilheiros;
+import trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros;
 import trilhasbrasil.com.servico.GrupoDeTrilheirosServico;
 
 @Path("/grupodetrilheiros")
