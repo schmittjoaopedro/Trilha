@@ -18,18 +18,18 @@ public class Evento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 	
-	public String nome;
+	private String nome;
 	
-	public Date date;
+	private Date date;
 	
-	public String descricao;
+	private String descricao;
 	
-	public Double custo;
+	private Double custo;
 	
 	@OneToMany(targetEntity = Imagens.class)
-	public List<Imagens> imagems;
+	private List<Imagens> imagems;
 	
 	@ManyToOne
 	private Trilha trilha;

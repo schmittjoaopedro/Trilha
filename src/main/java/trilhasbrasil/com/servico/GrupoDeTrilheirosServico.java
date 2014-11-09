@@ -1,4 +1,4 @@
-package trilhasbrasil.com.service;
+package trilhasbrasil.com.servico;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -9,7 +9,7 @@ import trilhasbrasil.com.persistence.beans.GrupoDeTrilheiros;
 import trilhasbrasil.com.persistence.dao.GrupoDeTrilheirosDao;
 
 @Stateless
-public class GrupoDeTrilheirosService {
+public class GrupoDeTrilheirosServico {
 
 	@EJB
 	private GrupoDeTrilheirosDao grupoDeTrilheirosDao;

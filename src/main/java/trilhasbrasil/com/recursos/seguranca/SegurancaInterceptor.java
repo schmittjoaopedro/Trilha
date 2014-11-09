@@ -1,4 +1,4 @@
-package trilhasbrasil.com.resources.security;
+package trilhasbrasil.com.recursos.seguranca;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -16,7 +16,7 @@ import org.jboss.resteasy.core.ServerResponse;
 
 
 @Provider
-public class SecurityInterceptor implements ContainerRequestFilter {
+public class SegurancaInterceptor implements ContainerRequestFilter {
 
 	@Context
 	private HttpServletRequest httpServletRequest;

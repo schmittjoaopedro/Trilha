@@ -1,4 +1,4 @@
-package trilhasbrasil.com.resources;
+package trilhasbrasil.com.recursos;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
@@ -9,13 +9,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 
 import trilhasbrasil.com.persistence.beans.GrupoDeTrilheiros;
-import trilhasbrasil.com.service.GrupoDeTrilheirosService;
+import trilhasbrasil.com.servico.GrupoDeTrilheirosServico;
 
 @Path("/grupodetrilheiros")
-public class GrupoDeTrilheirosResource {
+public class GrupoDeTrilheirosRecurso {
 
 	@EJB
-	private GrupoDeTrilheirosService grupoDeTrilheirosService;
+	private GrupoDeTrilheirosServico grupoDeTrilheirosService;
 	
 	@Context
 	private HttpServletRequest httpServletRequest;
