@@ -8,9 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "GrupoDeTrilheiros.findAll", query = "SELECT gt FROM GrupoDeTrilheiros gt WHERE gt.nome LIKE :nome")
+})
 public class GrupoDeTrilheiros implements Serializable {
 
 	private static final long serialVersionUID = 1L;

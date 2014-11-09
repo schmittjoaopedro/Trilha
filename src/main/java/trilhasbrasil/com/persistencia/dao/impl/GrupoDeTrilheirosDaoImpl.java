@@ -3,46 +3,26 @@ package trilhasbrasil.com.persistencia.dao.impl;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros;
 import trilhasbrasil.com.persistencia.dao.GrupoDeTrilheirosDao;
 
 @Stateless
-public class GrupoDeTrilheirosDaoImpl implements GrupoDeTrilheirosDao {
+public class GrupoDeTrilheirosDaoImpl extends GenericoDaoImpl<GrupoDeTrilheiros> implements GrupoDeTrilheirosDao {
 
-	@PersistenceContext(unitName = "trilhasbr")
-	private EntityManager entityManager;
-	
-	protected EntityManager getEntityManager() {
-		return this.entityManager;
+	@SuppressWarnings("unchecked")
+	public List<GrupoDeTrilheiros> procurarPorQueryPaginado(Integer start, Integer limit, String query) {
+		Query sqlQuery = this.getEntityManager().createNamedQuery("GrupoDeTrilheiros.findAll");
+		sqlQuery.setFirstResult(start);
+		sqlQuery.setMaxResults(limit);
+		sqlQuery.setParameter("nome", "%" + query + "%");
+		return sqlQuery.getResultList();
 	}
 
-	public GrupoDeTrilheiros save(GrupoDeTrilheiros entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Boolean remove(GrupoDeTrilheiros entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<GrupoDeTrilheiros> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<GrupoDeTrilheiros> findByQueryAndPaginate(Integer start,
-			Integer limit, String query) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Boolean adicionarTrilha(Integer grupoId, Integer trilhaId) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	protected Boolean isPersistente(GrupoDeTrilheiros entity) {
+		return entity.getId() != null && !entity.getId().equals(0L);
 	}
 
 }
