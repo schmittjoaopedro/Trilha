@@ -40,7 +40,7 @@
                 </div>
             </div>
         </nav>                   
-        <div class="container container-index">
+        <div class="container container-index" class="ng-cloack">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default">

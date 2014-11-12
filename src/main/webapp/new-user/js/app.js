@@ -1,29 +1,39 @@
 var app = angular.module("NewUserApp", []);
 
-app.controller("NewUserController", function($scope){
+app.controller("NewUserController", function($scope, $window){
     
     angular.extend($scope, {
+        form: {
+            name: "",
+            email: "",
+            password: ""
+        },        
         email: "",
-        password: "",
-        idDetalhes: 0
+        password: "",        
     });
     
     $scope.login = function(){
         alert("Login");
     };
     
-    $scope.show = function(idDetalhado){
-        if(idDetalhado == $scope.idDetalhes){
-           $scope.idDetalhes = 0; 
-        }else{
-           $scope.idDetalhes = idDetalhado; 
-        }
+    $scope.newUser = function(){
+        $window.location.href = "/Trilha/new-user";
     };
     
-    $scope.showDetalhes = function(idDetalhado){
-        if(idDetalhado == $scope.idDetalhes){
-            return true;            
-        }
-        return false;
+    $scope.save = function(){
+        alert("Save");
+        $scope.clear();
     };
+    
+    $scope.clear = function(){
+        angular.extend($scope, {
+            form: {
+                name: "",
+                email: "",
+                password: ""
+            }        
+        });
+    };
+    
+      
 });

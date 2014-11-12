@@ -10,7 +10,7 @@
         <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
     </head>
-    <body ng-controller="NewUserController">
+    <body ng-controller="NewUserController" class="ng-cloack">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -43,20 +43,22 @@
         <div class="container container-new-user">
             <div class="row">
                 <div class="col-sm-5">
-                    <form role="form">
+                    <form role="form" name="myForm">
                         <div class="form-group">
                             <label>Nome</label>
-                            <input type="text" class="form-control" placeholder="Nome">
+                            <input type="text" class="form-control" placeholder="Nome" ng-model="form.name" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" placeholder="Email" ng-model="form.email" required>
                         </div>
                         <div class="form-group">
                             <label>Senha</label>
-                            <input type="password" class="form-control" placeholder="Senha">
-                        </div>                                                
-                        <button type="submit" class="btn btn-default">Submit</button>
+                            <input type="password" class="form-control" placeholder="Senha" ng-model="form.password" required>
+                        </div>                                                                        
+                        <button type="submit" class="btn btn-success" ng-disabled="myForm.$invalid" ng-click="save()">
+                            <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Salvar
+                        </button>                        
                     </form>
                 </div>
             </div>                                   

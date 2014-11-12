@@ -13,7 +13,7 @@ app.controller("IndexController", function($scope, $window){
     };
     
     $scope.newUser = function(){
-        $window.location.href = "new-user";
+        $window.location.href = "/Trilha/new-user";
     };
     
     $scope.show = function(idDetalhado){
