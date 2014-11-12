@@ -14,7 +14,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "GrupoDeTrilheiros.findAll", query = "SELECT gt FROM GrupoDeTrilheiros gt WHERE gt.nome LIKE :nome")
+	@NamedQuery(name = "GrupoDeTrilheiros.findAll", query = "SELECT gt FROM GrupoDeTrilheiros gt WHERE gt.nome LIKE :nome"),
+	@NamedQuery(name = "GrupoDeTrilheiros.procurarPorLoginESenha", query = "SELECT gt FROM GrupoDeTrilheiros gt WHERE gt.login = :login AND gt.senha = :senha")
 })
 public class GrupoDeTrilheiros implements Serializable {
 
@@ -29,6 +30,8 @@ public class GrupoDeTrilheiros implements Serializable {
 	private String login;
 	
 	private String senha;
+	
+	private AccessRoles accessRoles;
 	
 	@OneToMany(targetEntity = Imagens.class)
 	private List<Imagens> imagens;
@@ -126,6 +129,14 @@ public class GrupoDeTrilheiros implements Serializable {
 
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
+	}
+
+	public AccessRoles getAccessRoles() {
+		return accessRoles;
+	}
+
+	public void setAccessRoles(AccessRoles accessRoles) {
+		this.accessRoles = accessRoles;
 	}
 	
 }

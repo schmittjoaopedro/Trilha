@@ -35,6 +35,10 @@ public class Trilha implements Serializable {
 	private List<Evento> eventos;
 	
 	public Trilha() {}
+	
+	public Trilha(Long id) {
+		this.setId(id);
+	}
 
 	public Long getId() {
 		return id;

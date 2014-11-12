@@ -38,6 +38,10 @@ public class Evento implements Serializable {
 	private GrupoDeTrilheiros grupoDeTrilheiros;
 	
 	public Evento() {}
+	
+	public Evento(Long id) {
+		this.setId(id);
+	}
 
 	public Long getId() {
 		return id;

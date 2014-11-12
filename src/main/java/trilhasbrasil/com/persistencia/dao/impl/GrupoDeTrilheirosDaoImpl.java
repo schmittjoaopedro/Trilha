@@ -25,4 +25,11 @@ public class GrupoDeTrilheirosDaoImpl extends GenericoDaoImpl<GrupoDeTrilheiros>
 		return entity.getId() != null && !entity.getId().equals(0L);
 	}
 
+	public GrupoDeTrilheiros procurarPorLoginESenha(String login, String senha) {
+		Query query = this.getEntityManager().createNamedQuery("GrupoDeTrilheiros.procurarPorLoginESenha");
+		query.setParameter("login", login);
+		query.setParameter("senha", senha);
+		return (GrupoDeTrilheiros) query.getSingleResult();
+	}
+
 }

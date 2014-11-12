@@ -14,6 +14,8 @@ import org.jboss.resteasy.core.Headers;
 import org.jboss.resteasy.core.ResourceMethodInvoker;
 import org.jboss.resteasy.core.ServerResponse;
 
+import trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros;
+
 
 @Provider
 public class SegurancaInterceptor implements ContainerRequestFilter {
@@ -23,12 +25,24 @@ public class SegurancaInterceptor implements ContainerRequestFilter {
 	
 	private static final ServerResponse ACCESS_DENIED = new ServerResponse("Access denied for this resource", 401, new Headers<Object>());;
 	
-	
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 		ResourceMethodInvoker methodInvoker = (ResourceMethodInvoker) requestContext.getProperty("org.jboss.resteasy.core.ResourceMethodInvoker");
 		Method method = methodInvoker.getMethod();
 		if(method.isAnnotationPresent(RolesAllowed.class)) {
-			if(httpServletRequest.getSession().getAttribute("roles").equals(null) || !httpServletRequest.getSession().getAttribute("roles").equals(method.getAnnotation(RolesAllowed.class).value()[0])) {
+			GrupoDeTrilheiros grupoDeTrilheiros = (GrupoDeTrilheiros) httpServletRequest.getSession().getAttribute("user");
+			if(grupoDeTrilheiros.equals(null)) {
+				requestContext.abortWith(ACCESS_DENIED);
+				return;
+			}
+			String[] roles = method.getAnnotation(RolesAllowed.class).value();
+			Boolean haveAccess = false;
+			for(String role : roles) {
+				if(role.equals(grupoDeTrilheiros.getAccessRoles().name())) {
+					haveAccess = true;
+					break;
+				}
+			}
+			if(!haveAccess) {
 				requestContext.abortWith(ACCESS_DENIED);
 				return;
 			}

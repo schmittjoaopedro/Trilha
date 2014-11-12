@@ -24,6 +24,11 @@ public class Imagens implements Serializable {
 	
 	public Imagens() {}
 
+	public Imagens(Long id, String url) {
+		this.setId(id);
+		this.setUrl(url);
+	}
+	
 	public Long getId() {
 		return id;
 	}

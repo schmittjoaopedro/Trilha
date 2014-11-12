@@ -33,6 +33,10 @@ public class Trilheiro implements Serializable {
 	private GrupoDeTrilheiros grupoDeTrilheiros;
 	
 	public Trilheiro() {}
+	
+	public Trilheiro(Long id) {
+		this.setId(id);
+	}
 
 	public Long getId() {
 		return id;
