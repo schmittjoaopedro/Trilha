@@ -206,5 +206,6 @@
         <br>                
         <script type="text/javascript" src="libs/angularjs/js/angular.min.js"></script>        
         <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     </body>
 </html>

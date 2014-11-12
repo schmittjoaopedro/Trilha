@@ -1,6 +1,6 @@
 var app = angular.module("IndexApp", []);
 
-app.controller("IndexController", function($scope, $window){
+app.controller("IndexController", function($scope, $window, $http){
     
     angular.extend($scope, {
         email: "",
@@ -9,7 +9,12 @@ app.controller("IndexController", function($scope, $window){
     });
     
     $scope.login = function(){
-        alert("Login");
+        $http({
+            method: 'POST',
+            url: '/Trilha/resources/autenticacao',
+            data: $.param({ login: $scope.email, senha: $scope.password }),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
     };
     
     $scope.newUser = function(){

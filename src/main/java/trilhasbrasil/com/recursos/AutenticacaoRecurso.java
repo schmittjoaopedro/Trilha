@@ -3,11 +3,11 @@ package trilhasbrasil.com.recursos;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -25,8 +25,7 @@ public class AutenticacaoRecurso {
 	
 	@POST
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.MULTIPART_FORM_DATA})
-	public GrupoDeTrilheirosXmlType autenticar(@QueryParam("login") String login, @QueryParam("senha") String senha) throws Exception {
+	public GrupoDeTrilheirosXmlType autenticar(@FormParam("login") String login, @FormParam("senha") String senha) throws Exception {
 		return this.grupoDeTrilheirosServico.autenticarUsuario(login, senha, httpServletRequest);
 	}
 	
