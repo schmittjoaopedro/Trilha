@@ -1,0 +1,19 @@
+.container-index {  
+    margin-top: 70px;
+    padding-right: 200px;
+    padding-left: 200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-new-user{
+    margin-top: 70px;
+}
+
+.btn-detalhes{
+    margin-top: 15px;
+}
+
+.btn-cadastrar{
+    margin-left: 10px;
+}
