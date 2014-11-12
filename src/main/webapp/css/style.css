@@ -1,3 +1,7 @@
+.ng-cloack{
+    display: none;
+}
+
 .container-index {  
     margin-top: 70px;
     padding-right: 200px;
