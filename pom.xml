@@ -8,6 +8,10 @@
 	<name>Trilha Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<javaee6.with.tools.version>1.0.0.M1</javaee6.with.tools.version>
+	</properties>
 
 	<dependencies>
 
