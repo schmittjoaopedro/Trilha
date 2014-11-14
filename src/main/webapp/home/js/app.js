@@ -2,7 +2,7 @@ angular.module("App").controller("HomeController", function($scope, $window, $ht
     
     $scope.close = function(){
         $http.delete("/Trilha/resources/autenticacao").success(function(){
-            alert();
+            $window.location.href = "/Trilha";
         });
     };
     
