@@ -2,6 +2,7 @@ package trilhasbrasil.com.recursos;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -32,6 +33,16 @@ public class AutenticacaoRecurso {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, })
 	public Boolean estaAutenticado() {
 		return !httpServletRequest.getSession().getAttribute("user").equals(null);
+	}
+	
+	@DELETE
+	public Boolean logout() {
+		try {
+			httpServletRequest.getSession().setAttribute("user", null);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
 	}
 	
 }
