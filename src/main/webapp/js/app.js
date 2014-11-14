@@ -1,6 +1,4 @@
-var app = angular.module("IndexApp", []);
-
-app.controller("IndexController", function($scope, $window, $http){
+angular.module("App").controller("IndexController", function($scope, $window, $http){
     
     angular.extend($scope, {
         email: "",
@@ -8,17 +6,21 @@ app.controller("IndexController", function($scope, $window, $http){
         idDetalhes: 0
     });
     
-    $scope.login = function(){
+    $scope.logar = function(){        
         $http({
             method: 'POST',
             url: '/Trilha/resources/autenticacao',
             data: $.param({ login: $scope.email, senha: $scope.password }),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        })
+        }).success(function(){
+            $window.location.href = "/Trilha/home";
+        }).error(function(){
+            alert("Usuário ou senha inválidos!");
+        });
     };
     
     $scope.newUser = function(){
-        $window.location.href = "/Trilha/new-user";
+        $window.location.href = "/Trilha/novo-grupo";
     };
     
     $scope.show = function(idDetalhado){

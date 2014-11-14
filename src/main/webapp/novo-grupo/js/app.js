@@ -1,6 +1,4 @@
-var app = angular.module("NewUserApp", []);
-
-app.controller("NewUserController", function($scope, $window, $http){
+angular.module("App").controller("NewUserController", function($scope, $window, $http){
     
     angular.extend($scope, {
         form: {
