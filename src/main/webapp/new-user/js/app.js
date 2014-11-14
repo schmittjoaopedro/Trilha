@@ -7,27 +7,31 @@ app.controller("NewUserController", function($scope, $window, $http){
             name: "",
             cidade: "",
             estado: "",
-            email: "",
+            login: "",
             password: ""            
         },        
-        email: "",
+        login: "",
         password: "",        
     });
     
     $scope.logar = function(){
         alert("Login");
-    };      
+    };
+    
+    $scope.newUser = function(){
+        $window.location.href = "/Trilha/new-user";
+    };
     
     $scope.save = function(){
         $http({
-        	url: '/Trilha/grupodetrilheiros',
+        	url: '/Trilha/resources/grupodetrilheiros',
         	method: 'POST',
         	data: {
-        		nome: $scope.nome,
-        		login: $scope.login,
-        		senha: $scope.senha,
-        		cidade: $scope.cidade,
-        		estado: $scope.estado
+        		nome: $scope.form.name,
+        		login: $scope.form.login,
+        		senha: $scope.form.password,
+        		cidade: $scope.form.cidade,
+        		estado: $scope.form.estado
         	},
         	headers: {
         		'Content-Type': 'application/json; charset=UTF-8',
@@ -35,7 +39,7 @@ app.controller("NewUserController", function($scope, $window, $http){
         	}
         }).success(function() {
         	alert('Conta criada com sucess com successo');
-        	window.href = '/Trilha';
+        	$window.location.href = '/Trilha';
         }).error(function() {
         	alert('Falha ao criar conta');
         });
