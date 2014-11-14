@@ -5,12 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Trilha Brasil">
-        <meta name="author" content="Fabr�cio Ronchi - Jo�o Schimitt">
+        <meta name="author" content="Fabrício Ronchi - João Schimitt">
         <link rel="icon" href="img/icon.svg" >
         <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
         <link href="../css/style.css" rel="stylesheet" />
     </head>
-    <body ng-controller="HomeController" class="ng-cloak">
+    <body ng-controller="EventpController" class="ng-cloak">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -23,7 +23,7 @@
                     <a class="navbar-brand" href="/Trilha/home">Trilha Brasil</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="/Trilha/novo-evento">Novo evento</a></li>                                        
+                    <li class="active"><a href="/Trilha/novo-evento">Novo evento</a></li>                                        
                 </ul>
                 <div id="navbar" class="navbar-collapse collapse">
                     <form class="navbar-form navbar-right" role="form">                    
@@ -36,11 +36,35 @@
         </nav>                   
         <div class="container container-new-user">
             <div class="row">
-                <div class="col-sm-12 text-center">
-                    <h1>Trilha Brasil</h1>
+                <div class="col-sm-5">
+                    <form role="form" name="myForm">
+                        <div class="form-group">
+                            <label>Nome do evento</label>
+                            <input type="text" class="form-control" placeholder="Nome do evento" ng-model="form.name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição</label>
+                            <input type="text" class="form-control" placeholder="Descrição" ng-model="form.descricao" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Valor</label>
+                            <input type="text" class="form-control" placeholder="Valor" ng-model="form.valor" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Login</label>
+                            <input type="text" class="form-control" placeholder="Login" ng-model="form.login" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="password" class="form-control" placeholder="Senha" ng-model="form.password" required>
+                        </div>                                                                        
+                        <button type="submit" class="btn btn-success" ng-disabled="myForm.$invalid" ng-click="save()">
+                            <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Salvar
+                        </button>                        
+                    </form>
                 </div>
             </div>                                   
-        </div>                                       
+        </div>                                             
         <script type="text/javascript" src="../libs/angularjs/js/angular.min.js"></script>        
         <script type="text/javascript" src="../app.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
