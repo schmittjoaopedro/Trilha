@@ -5,8 +5,10 @@ app.controller("NewUserController", function($scope, $window){
     angular.extend($scope, {
         form: {
             name: "",
+            cidade: "",
+            estado: "",
             email: "",
-            password: ""
+            password: ""            
         },        
         email: "",
         password: "",        
@@ -29,6 +31,8 @@ app.controller("NewUserController", function($scope, $window){
         angular.extend($scope, {
             form: {
                 name: "",
+                cidade: "",
+                estado: "",
                 email: "",
                 password: ""
             }        
