@@ -1,6 +1,7 @@
 package trilhasbrasil.com.xml.type;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -71,6 +72,7 @@ public class EventoXmlType implements Serializable {
 	}
 
 	public List<ImagemXmlType> getImagems() {
+		if(this.imagems == null) this.imagems = new ArrayList<ImagemXmlType>();
 		return imagems;
 	}
 

@@ -1,9 +1,11 @@
 package trilhasbrasil.com.persistencia.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +30,7 @@ public class Evento implements Serializable {
 	
 	private Double custo;
 	
-	@OneToMany(targetEntity = Imagens.class)
+	@OneToMany(targetEntity = Imagens.class, cascade = CascadeType.ALL)
 	private List<Imagens> imagems;
 	
 	@ManyToOne
@@ -84,6 +86,7 @@ public class Evento implements Serializable {
 	}
 
 	public List<Imagens> getImagems() {
+		if(this.imagems == null) this.imagems = new ArrayList<Imagens>();
 		return imagems;
 	}
 

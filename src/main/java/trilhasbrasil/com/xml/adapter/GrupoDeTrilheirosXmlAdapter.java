@@ -55,7 +55,8 @@ public final class GrupoDeTrilheirosXmlAdapter extends XmlAdapter<GrupoDeTrilhei
 		grupoDeTrilheiros.setImagens(grupoDeTrilheirosXmlType.getImagens());
 		grupoDeTrilheiros.setLogin(grupoDeTrilheirosXmlType.getLogin());
 		grupoDeTrilheiros.setNome(grupoDeTrilheirosXmlType.getNome());
-		grupoDeTrilheiros.setSenha(GeradorMD5.gerarMD5(grupoDeTrilheirosXmlType.getSenha()));
+		if(grupoDeTrilheirosXmlType.getSenha() != null)
+			grupoDeTrilheiros.setSenha(GeradorMD5.gerarMD5(grupoDeTrilheirosXmlType.getSenha()));
 		grupoDeTrilheiros.setTrilhas(grupoDeTrilheirosXmlType.getTrilhas());
 		grupoDeTrilheiros.setTrilheiros(grupoDeTrilheirosXmlType.getTrilheiros());
 		return grupoDeTrilheiros;
