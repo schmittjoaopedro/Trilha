@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="IndexApp">
+<html lang="en" ng-app="App">
     <head>
        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <input type="password" placeholder="Senha" class="form-control" ng-model="password">
                         </div>
-                        <button type="button" class="btn btn-success" ng-click="login()">
+                        <button type="button" class="btn btn-success" ng-click="logar()">
                             <i class="glyphicon glyphicon-log-in"></i>&nbsp;&nbsp;Entrar
                         </button>
                         <button type="button" class="btn btn-primary btn-cadastrar" ng-click="newUser()">
@@ -205,6 +205,7 @@
         </div>      
         <br>                
         <script type="text/javascript" src="libs/angularjs/js/angular.min.js"></script>        
+        <script type="text/javascript" src="app.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     </body>
