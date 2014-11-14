@@ -13,7 +13,16 @@ angular.module("App").controller("NewUserController", function($scope, $window, 
     });
     
     $scope.logar = function(){
-        alert("Login");
+        $http({
+            method: 'POST',
+            url: '/Trilha/resources/autenticacao',
+            data: $.param({ login: $scope.login, senha: $scope.password }),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(){
+            $window.location.href = "/Trilha/home";
+        }).error(function(){
+            alert("Usuário ou senha inválidos!");
+        });
     };
     
     $scope.newUser = function(){

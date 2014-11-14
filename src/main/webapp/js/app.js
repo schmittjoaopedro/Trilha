@@ -1,7 +1,7 @@
 angular.module("App").controller("IndexController", function($scope, $window, $http){
     
     angular.extend($scope, {
-        email: "",
+        login: "",
         password: "",
         idDetalhes: 0
     });
@@ -10,7 +10,7 @@ angular.module("App").controller("IndexController", function($scope, $window, $h
         $http({
             method: 'POST',
             url: '/Trilha/resources/autenticacao',
-            data: $.param({ login: $scope.email, senha: $scope.password }),
+            data: $.param({ login: $scope.login, senha: $scope.password }),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
             $window.location.href = "/Trilha/home";
