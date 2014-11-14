@@ -16,11 +16,7 @@ app.controller("NewUserController", function($scope, $window, $http){
     
     $scope.logar = function(){
         alert("Login");
-    };
-    
-    $scope.newUser = function(){
-        $window.location.href = "/Trilha/new-user";
-    };
+    };      
     
     $scope.save = function(){
         $http({
