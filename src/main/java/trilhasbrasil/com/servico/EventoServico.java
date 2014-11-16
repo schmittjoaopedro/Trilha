@@ -1,5 +1,9 @@
 package trilhasbrasil.com.servico;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;
@@ -23,4 +27,40 @@ public class EventoServico {
 		return EventoXmlAdapter.getInstance().marshal(eventoParaSalvar);
 	}
 	
+	@Transactional(value = TxType.REQUIRED)
+	public List<EventoXmlType> procurarTodosEventos() throws Exception {
+		List<Evento> eventos = this.eventoDao.procurarTodos();
+		List<EventoXmlType> eventosXmlTypes = new ArrayList<EventoXmlType>();
+		for(Evento evento : eventos) 
+			eventosXmlTypes.add(EventoXmlAdapter.getInstance().marshal(evento));
+		return eventosXmlTypes;
+	}
+	
+	@Transactional(value = TxType.REQUIRED)
+	public EventoXmlType procurarEventoPorId(Long id) throws Exception {
+		return EventoXmlAdapter.getInstance().marshal(this.eventoDao.procurarPeloId(id));
+	}
+	
+	@Transactional(value = TxType.REQUIRED)
+	public List<EventoXmlType> procurarEventosEntreAsDatas(Date initDate, Date endDate) throws Exception {
+		List<Evento> eventos = this.eventoDao.procurarProximosEventos(initDate, endDate);
+		List<EventoXmlType> eventosXmlTypes = new ArrayList<EventoXmlType>();
+		for(Evento evento : eventos) 
+			eventosXmlTypes.add(EventoXmlAdapter.getInstance().marshal(evento));
+		return eventosXmlTypes;
+	}
+	
+	@Transactional(value = TxType.REQUIRES_NEW)
+	public Boolean deletarEvento(Long eventoId, Long grupoDeTrilheirosId) {
+		Evento eventoParaDeletar = this.eventoDao.procurarPeloId(eventoId);
+		if(eventoParaDeletar != null && grupoDeTrilheirosId != null && eventoParaDeletar.getGrupoDeTrilheiros().getId().equals(grupoDeTrilheirosId)) {
+			this.eventoDao.remove(eventoId);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }
+
+

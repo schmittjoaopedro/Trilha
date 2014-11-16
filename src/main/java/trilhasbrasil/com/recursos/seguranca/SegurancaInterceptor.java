@@ -30,9 +30,9 @@ public class SegurancaInterceptor implements ContainerRequestFilter {
 		Method method = methodInvoker.getMethod();
 		if(method.isAnnotationPresent(RolesAllowed.class)) {
 			GrupoDeTrilheiros grupoDeTrilheiros = (GrupoDeTrilheiros) httpServletRequest.getSession().getAttribute("user");
-			if(grupoDeTrilheiros.equals(null)) {
+			if(grupoDeTrilheiros == null) {
 				requestContext.abortWith(ACCESS_DENIED);
-				return;
+				return; 
 			}
 			String[] roles = method.getAnnotation(RolesAllowed.class).value();
 			Boolean haveAccess = false;

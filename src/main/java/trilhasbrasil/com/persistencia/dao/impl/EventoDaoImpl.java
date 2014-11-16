@@ -1,8 +1,10 @@
 package trilhasbrasil.com.persistencia.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import trilhasbrasil.com.persistencia.beans.Evento;
 import trilhasbrasil.com.persistencia.dao.EventoDao;
@@ -15,13 +17,17 @@ public class EventoDaoImpl extends GenericoDaoImpl<Evento> implements EventoDao 
 		return null;
 	}
 
-	public List<Evento> buscarEventosProximosEventos() {
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<Evento> procurarProximosEventos(Date initDate, Date endDate) {
+		Query query = this.getEntityManager().createNamedQuery("Evento.procurarProximosEventos");
+		query.setParameter("initdate", initDate);
+		query.setParameter("enddate", endDate);
+		return (List<Evento>) query.getResultList();
 	}
 
 	@Override
 	protected Boolean isPersistente(Evento entity) {
-		return entity.getId() != null;
+		return entity.getId() != null && !entity.getId().equals(0);
 	}
 
 }

@@ -1,17 +1,24 @@
 package trilhasbrasil.com.persistencia.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Trilheiro.procurarTrilheirosPorGrupo", query = "SELECT t FROM Trilheiro t WHERE t.grupoDeTrilheiros.id = :grupoDeTrilheirosId")
+})
 public class Trilheiro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,7 +33,7 @@ public class Trilheiro implements Serializable {
 	
 	private String telefone;
 	
-	@OneToMany(targetEntity = Imagens.class)
+	@OneToMany(targetEntity = Imagens.class, cascade = CascadeType.ALL)
 	private List<Imagens> imagens;
 	
 	@ManyToOne
@@ -71,6 +78,7 @@ public class Trilheiro implements Serializable {
 	}
 
 	public List<Imagens> getImagens() {
+		if(this.imagens == null) this.imagens = new ArrayList<Imagens>();
 		return imagens;
 	}
 

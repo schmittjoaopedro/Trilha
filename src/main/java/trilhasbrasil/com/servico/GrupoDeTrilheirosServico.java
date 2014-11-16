@@ -74,7 +74,7 @@ public class GrupoDeTrilheirosServico {
 		} catch (Exception ex) {
 			throw new Exception("Usuário não registrado");
 		}
-		if(grupoDeTrilheiros.equals(null)) {
+		if(grupoDeTrilheiros == null) {
 			throw new Exception("Usuário inválido");
 		} else {
 			return GrupoDeTrilheirosXmlAdapter.getInstance().marshal(grupoDeTrilheiros);

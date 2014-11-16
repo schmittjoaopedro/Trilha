@@ -2,6 +2,7 @@ package trilhasbrasil.com.recursos;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -19,6 +20,8 @@ public class AutenticacaoRecurso {
 
 	@Context
 	private HttpServletRequest httpServletRequest;
+	@Context
+	private HttpServletResponse httpServletResponse;
 	
 	@EJB
 	private GrupoDeTrilheirosServico grupoDeTrilheirosServico;
@@ -26,7 +29,12 @@ public class AutenticacaoRecurso {
 	@POST
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public GrupoDeTrilheirosXmlType autenticar(@FormParam("login") String login, @FormParam("senha") String senha) throws Exception {
-		return this.grupoDeTrilheirosServico.autenticarUsuario(login, senha, httpServletRequest);
+		try {
+			return this.grupoDeTrilheirosServico.autenticarUsuario(login, senha, httpServletRequest);
+		} catch (Exception ex) {
+			httpServletResponse.sendError(401);
+			return null;
+		}
 	}
 	
 	@GET
