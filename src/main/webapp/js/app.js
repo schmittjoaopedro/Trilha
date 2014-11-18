@@ -15,6 +15,11 @@ angular.module("App").controller("IndexController", function($scope, $window, $h
         alert("Ocorrou algum erro!");
     });
     
+    $scope.getDate = function(date){                
+        date = new Date(date);
+        return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();                
+    };
+    
     $scope.logar = function(){        
         $http({
             method: 'POST',
