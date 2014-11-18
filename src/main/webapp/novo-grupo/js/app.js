@@ -50,19 +50,6 @@ angular.module("App").controller("NewUserController", function($scope, $window, 
         }).error(function() {
         	alert('Falha ao criar conta');
         });
-    };
-    
-    $scope.clear = function(){
-        angular.extend($scope, {
-            form: {
-                name: "",
-                cidade: "",
-                estado: "",
-                email: "",
-                password: ""
-            }        
-        });
-    };
-    
+    };         
       
 });
