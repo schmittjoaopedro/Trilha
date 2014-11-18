@@ -41,20 +41,20 @@
             </div>
         </nav>                   
         <div class="container container-index" class="ng-cloack">
-            <div class="row">
+            <div class="row" ng-repeat="evento in eventos | orderBy:'data'">
                 <div class="col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <div class="row">
+                            <div class="row">                                
                                 <div class="col-sm-12">
                                     <a href="#" class="thumbnail">
-                                    <img src="img/example.jpg" alt="Imagem do evento">
+                                    <img ng-src="{{evento.imagems[0].url}}" alt="Imagem do evento">
                                     </a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <h4>Data: 10/10/2014</h4>
+                                    <h4>Data: {{evento.data}}</h4>
                                     <h4>Local: Massaranduba</h4>
                                 </div>
                                 <div class="col-sm-3 text-center">
@@ -71,132 +71,8 @@
                         </div>
                     </div>
                 </div>
-            </div>           
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a href="#" class="thumbnail">
-                                    <img src="img/example.jpg" alt="Imagem do evento">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <h4>Data: 10/10/2014</h4>
-                                    <h4>Local: Massaranduba</h4>
-                                </div>
-                                <div class="col-sm-3 text-center">
-                                    <button type="button" class="btn btn-primary btn-detalhes" ng-click="show(2)">
-                                        <i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;Detalhes
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row" ng-show="showDetalhes(2)">
-                                <div class="col-sm-12 text-center">
-                                    <h4>Detalhes</h4>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>           
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a href="#" class="thumbnail">
-                                    <img src="img/example.jpg" alt="Imagem do evento">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <h4>Data: 10/10/2014</h4>
-                                    <h4>Local: Massaranduba</h4>
-                                </div>
-                                <div class="col-sm-3 text-center">
-                                    <button type="button" class="btn btn-primary btn-detalhes" ng-click="show(3)">
-                                        <i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;Detalhes
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row" ng-show="showDetalhes(3)">
-                                <div class="col-sm-12 text-center">
-                                    <h4>Detalhes</h4>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>           
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a href="#" class="thumbnail">
-                                    <img src="img/example.jpg" alt="Imagem do evento">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <h4>Data: 10/10/2014</h4>
-                                    <h4>Local: Massaranduba</h4>
-                                </div>
-                                <div class="col-sm-3 text-center">
-                                    <button type="button" class="btn btn-primary btn-detalhes" ng-click="show(4)">
-                                        <i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;Detalhes
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row" ng-show="showDetalhes(4)">
-                                <div class="col-sm-12 text-center">
-                                    <h4>Detalhes</h4>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>           
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a href="#" class="thumbnail">
-                                    <img src="img/example.jpg" alt="Imagem do evento">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <h4>Data: 10/10/2014</h4>
-                                    <h4>Local: Massaranduba</h4>
-                                </div>
-                                <div class="col-sm-3 text-center">
-                                    <button type="button" class="btn btn-primary btn-detalhes" ng-click="show(5)">
-                                        <i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;Detalhes
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row" ng-show="showDetalhes(5)">
-                                <div class="col-sm-12 text-center">
-                                    <h4>Detalhes</h4>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>           
-        </div>                          
+            </div>                                    
+        </div>
         <div class="container">
             <hr>
             <footer>

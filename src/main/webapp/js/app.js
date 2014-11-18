@@ -3,7 +3,16 @@ angular.module("App").controller("IndexController", function($scope, $window, $h
     angular.extend($scope, {
         login: "",
         password: "",
-        idDetalhes: 0
+        idDetalhes: 0,
+        eventos: []
+    });
+         
+    $http.get("/Trilha/resources/evento", $scope.form).success(function(data){
+        angular.extend($scope, {
+            eventos: data
+        });
+    }).error(function(error){
+        alert("Ocorrou algum erro!");
     });
     
     $scope.logar = function(){        
