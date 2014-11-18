@@ -6,6 +6,10 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventoController", functio
         }
     });
     
+    $scope.salvar = function(){
+        alert("");
+    }; 
+    
     $scope.close = function(){
         $http.delete("/Trilha/resources/autenticacao").success(function(){
             window.location = "/Trilha";
