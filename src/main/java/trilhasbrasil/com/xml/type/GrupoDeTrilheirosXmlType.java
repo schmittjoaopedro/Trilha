@@ -8,10 +8,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import trilhasbrasil.com.persistencia.beans.Evento;
 import trilhasbrasil.com.persistencia.beans.Imagens;
-import trilhasbrasil.com.persistencia.beans.Trilha;
-import trilhasbrasil.com.persistencia.beans.Trilheiro;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -33,11 +30,11 @@ public class GrupoDeTrilheirosXmlType implements Serializable {
 	
 	private String estado;
 	
-	private List<Trilheiro> trilheiros = new ArrayList<Trilheiro>();
+	private List<TrilheiroXmlType> trilheiros = new ArrayList<TrilheiroXmlType>();
 	
-	private List<Trilha> trilhas = new ArrayList<Trilha>();
+	private List<TrilhaXmlType> trilhas = new ArrayList<TrilhaXmlType>();
 	
-	private List<Evento> eventos = new ArrayList<Evento>();
+	private List<EventoXmlType> eventos = new ArrayList<EventoXmlType>();
 	
 	public GrupoDeTrilheirosXmlType() {}
 
@@ -97,27 +94,28 @@ public class GrupoDeTrilheirosXmlType implements Serializable {
 		this.estado = estado;
 	}
 
-	public List<Trilheiro> getTrilheiros() {
+	public List<TrilheiroXmlType> getTrilheiros() {
 		return trilheiros;
 	}
 
-	public void setTrilheiros(List<Trilheiro> trilheirosId) {
+	public void setTrilheiros(List<TrilheiroXmlType> trilheirosId) {
 		this.trilheiros = trilheirosId;
 	}
 
-	public List<Trilha> getTrilhas() {
+	public List<TrilhaXmlType> getTrilhas() {
+		if(this.trilhas == null) this.trilhas = new ArrayList<TrilhaXmlType>();
 		return trilhas;
 	}
 
-	public void setTrilhas(List<Trilha> trilhasId) {
+	public void setTrilhas(List<TrilhaXmlType> trilhasId) {
 		this.trilhas = trilhasId;
 	}
 
-	public List<Evento> getEventos() {
+	public List<EventoXmlType> getEventos() {
 		return eventos;
 	}
 
-	public void setEventos(List<Evento> eventosId) {
+	public void setEventos(List<EventoXmlType> eventosId) {
 		this.eventos = eventosId;
 	}
 	

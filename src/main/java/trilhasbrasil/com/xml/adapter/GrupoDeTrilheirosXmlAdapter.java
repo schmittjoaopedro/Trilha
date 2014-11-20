@@ -8,7 +8,10 @@ import trilhasbrasil.com.persistencia.beans.Imagens;
 import trilhasbrasil.com.persistencia.beans.Trilha;
 import trilhasbrasil.com.persistencia.beans.Trilheiro;
 import trilhasbrasil.com.util.GeradorMD5;
+import trilhasbrasil.com.xml.type.EventoXmlType;
 import trilhasbrasil.com.xml.type.GrupoDeTrilheirosXmlType;
+import trilhasbrasil.com.xml.type.TrilhaXmlType;
+import trilhasbrasil.com.xml.type.TrilheiroXmlType;
 
 public final class GrupoDeTrilheirosXmlAdapter extends XmlAdapter<GrupoDeTrilheirosXmlType, GrupoDeTrilheiros>{
 
@@ -31,16 +34,16 @@ public final class GrupoDeTrilheirosXmlAdapter extends XmlAdapter<GrupoDeTrilhei
 		grupoDeTrilheirosXmlType.setNome(grupoDeTrilheiros.getNome());
 		grupoDeTrilheirosXmlType.setLogin(grupoDeTrilheiros.getLogin());
 		for(Evento evento : grupoDeTrilheiros.getEventos()) {
-			grupoDeTrilheirosXmlType.getEventos().add(new Evento(evento.getId()));
+			grupoDeTrilheirosXmlType.getEventos().add(EventoXmlAdapter.getInstance().marshal(evento));
 		}
 		for (Imagens imagem : grupoDeTrilheiros.getImagens()) {
 			grupoDeTrilheirosXmlType.getImagens().add(new Imagens(imagem.getId(), imagem.getUrl()));
 		}
 		for (Trilha trilha : grupoDeTrilheiros.getTrilhas()) {
-			grupoDeTrilheirosXmlType.getTrilhas().add(new Trilha(trilha.getId()));
+			grupoDeTrilheirosXmlType.getTrilhas().add(TrilhaXmlAdapter.getInstance().unmarshal(trilha));
 		}
 		for(Trilheiro trilheiro : grupoDeTrilheiros.getTrilheiros()) {
-			grupoDeTrilheirosXmlType.getTrilheiros().add(new Trilheiro(trilheiro.getId()));
+			grupoDeTrilheirosXmlType.getTrilheiros().add(TrilheiroXmlAdapter.getInstance().marshal(trilheiro));
 		}
 		return grupoDeTrilheirosXmlType;
 	}
@@ -50,15 +53,18 @@ public final class GrupoDeTrilheirosXmlAdapter extends XmlAdapter<GrupoDeTrilhei
 		GrupoDeTrilheiros grupoDeTrilheiros = new GrupoDeTrilheiros();
 		grupoDeTrilheiros.setCidade(grupoDeTrilheirosXmlType.getCidade());
 		grupoDeTrilheiros.setEstado(grupoDeTrilheirosXmlType.getEstado());
-		grupoDeTrilheiros.setEventos(grupoDeTrilheirosXmlType.getEventos());
+		for(EventoXmlType eventoXmlType : grupoDeTrilheirosXmlType.getEventos())
+			grupoDeTrilheiros.getEventos().add(EventoXmlAdapter.getInstance().unmarshal(eventoXmlType));
 		grupoDeTrilheiros.setId(grupoDeTrilheirosXmlType.getId());
 		grupoDeTrilheiros.setImagens(grupoDeTrilheirosXmlType.getImagens());
 		grupoDeTrilheiros.setLogin(grupoDeTrilheirosXmlType.getLogin());
 		grupoDeTrilheiros.setNome(grupoDeTrilheirosXmlType.getNome());
 		if(grupoDeTrilheirosXmlType.getSenha() != null)
 			grupoDeTrilheiros.setSenha(GeradorMD5.gerarMD5(grupoDeTrilheirosXmlType.getSenha()));
-		grupoDeTrilheiros.setTrilhas(grupoDeTrilheirosXmlType.getTrilhas());
-		grupoDeTrilheiros.setTrilheiros(grupoDeTrilheirosXmlType.getTrilheiros());
+		for(TrilhaXmlType trilhaXmlType : grupoDeTrilheirosXmlType.getTrilhas())
+			grupoDeTrilheiros.getTrilhas().add(TrilhaXmlAdapter.getInstance().marshal(trilhaXmlType));
+		for(TrilheiroXmlType trilheiroXmlType : grupoDeTrilheirosXmlType.getTrilheiros())
+			grupoDeTrilheiros.getTrilheiros().add(TrilheiroXmlAdapter.getInstance().unmarshal(trilheiroXmlType));
 		return grupoDeTrilheiros;
 	}
 

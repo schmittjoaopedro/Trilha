@@ -1,8 +1,10 @@
 package trilhasbrasil.com.persistencia.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,9 +26,11 @@ public class GrupoDeTrilheiros implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@Column(unique = true)
 	private String nome;
 	
+	@Column(unique = true)
 	private String login;
 	
 	private String senha;
@@ -108,6 +112,7 @@ public class GrupoDeTrilheiros implements Serializable {
 	}
 
 	public List<Trilheiro> getTrilheiros() {
+		if(this.trilheiros == null) this.trilheiros = new ArrayList<Trilheiro>();
 		return trilheiros;
 	}
 
@@ -116,6 +121,7 @@ public class GrupoDeTrilheiros implements Serializable {
 	}
 
 	public List<Trilha> getTrilhas() {
+		if(this.trilhas == null) this.trilhas = new ArrayList<Trilha>();
 		return trilhas;
 	}
 
@@ -124,6 +130,7 @@ public class GrupoDeTrilheiros implements Serializable {
 	}
 
 	public List<Evento> getEventos() {
+		if(this.eventos == null) this.eventos = new ArrayList<Evento>();
 		return eventos;
 	}
 

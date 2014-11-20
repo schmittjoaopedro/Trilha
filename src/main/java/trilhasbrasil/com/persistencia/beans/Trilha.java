@@ -34,6 +34,9 @@ public class Trilha implements Serializable {
 	@OneToMany(mappedBy = "trilha")
 	private List<Evento> eventos;
 	
+	@OneToMany(mappedBy = "trilha")
+	private List<LocalizacaoGeografica> localizacaoGeograficas;
+	
 	public Trilha() {}
 	
 	public Trilha(Long id) {
@@ -94,6 +97,15 @@ public class Trilha implements Serializable {
 
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
+	}
+
+	public List<LocalizacaoGeografica> getLocalizacaoGeograficas() {
+		return localizacaoGeograficas;
+	}
+
+	public void setLocalizacaoGeograficas(
+			List<LocalizacaoGeografica> localizacaoGeograficas) {
+		this.localizacaoGeograficas = localizacaoGeograficas;
 	}
 	
 }
