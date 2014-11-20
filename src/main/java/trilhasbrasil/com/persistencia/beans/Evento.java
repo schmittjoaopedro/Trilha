@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 @NamedQueries({
@@ -28,7 +29,7 @@ public class Evento implements Serializable {
 	private Long id;
 	
 	private String nome;
-	
+	        
 	private Date date;
 	
 	private String descricao;

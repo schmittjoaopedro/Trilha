@@ -4,7 +4,8 @@ angular.module("App").controller("IndexController", function($scope, $window, $h
         login: "",
         password: "",
         idDetalhes: 0,
-        eventos: []
+        eventos: [],
+        existUser: false
     });
          
     $http.get("/Trilha/resources/evento", $scope.form).success(function(data){
@@ -15,11 +16,21 @@ angular.module("App").controller("IndexController", function($scope, $window, $h
         alert("Ocorrou algum erro!");
     });
     
+    $http({
+        method: 'GET',
+        url: '/Trilha/resources/autenticacao',        
+        headers: {'Content-Type': 'application/json;charset=UTF8'}
+    }).success(function(response){
+        angular.extend($scope, {
+            existUser: response
+        });    
+    });
+    
     $scope.getDate = function(date){                
         date = new Date(date);
         return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();                
     };
-    
+      
     $scope.logar = function(){        
         $http({
             method: 'POST',
@@ -30,6 +41,12 @@ angular.module("App").controller("IndexController", function($scope, $window, $h
             $window.location.href = "/Trilha/home";
         }).error(function(){
             alert("Usuário ou senha inválidos!");
+        });
+    };
+    
+    $scope.close = function(){
+        $http.delete("/Trilha/resources/autenticacao").success(function(){
+            window.location = "/Trilha";
         });
     };
     

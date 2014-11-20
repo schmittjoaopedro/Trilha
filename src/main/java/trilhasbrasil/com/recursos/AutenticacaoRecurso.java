@@ -40,7 +40,7 @@ public class AutenticacaoRecurso {
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, })
 	public Boolean estaAutenticado() {
-		return !httpServletRequest.getSession().getAttribute("user").equals(null);
+		return httpServletRequest.getSession().getAttribute("user") != null;
 	}
 	
 	@DELETE
