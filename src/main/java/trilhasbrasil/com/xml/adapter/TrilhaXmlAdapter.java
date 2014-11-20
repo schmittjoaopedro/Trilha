@@ -29,8 +29,11 @@ public final class TrilhaXmlAdapter extends XmlAdapter<Trilha, TrilhaXmlType> {
 		for(ImagemXmlType imagemXmlType : trilhaXmlType.getImagens()) {
 			trilha.getImagens().add(ImagemXmlAdapter.getInstance().unmarshal(imagemXmlType));
 		}
-		for(LocalizacaoGeograficaXmlType localizacaoGeograficaXmlType : trilhaXmlType.getLocalizacaoGeograficas()) 
-			trilha.getLocalizacaoGeograficas().add(LocalizacaoGeograficaXmlAdapter.getInstance().marshal(localizacaoGeograficaXmlType));
+		for(LocalizacaoGeograficaXmlType localizacaoGeograficaXmlType : trilhaXmlType.getLocalizacaoGeograficas()) {
+			LocalizacaoGeografica geografica = LocalizacaoGeograficaXmlAdapter.getInstance().marshal(localizacaoGeograficaXmlType);
+			trilha.getLocalizacaoGeograficas().add(geografica);
+			geografica.setTrilha(trilha);
+		}
 		return trilha;
 	}
 

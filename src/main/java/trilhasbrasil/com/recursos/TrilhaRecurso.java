@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,9 +13,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros;
 import trilhasbrasil.com.servico.TrilhaServico;
+import trilhasbrasil.com.xml.adapter.GrupoDeTrilheirosXmlAdapter;
 import trilhasbrasil.com.xml.type.TrilhaXmlType;
 
 @Path("/trilha")
@@ -22,12 +27,45 @@ public class TrilhaRecurso {
 	@EJB
 	private TrilhaServico trilhaServico;
 	
+	@Context
+	private HttpServletRequest httpServletRequest;
+
+	@Context
+	private HttpServletResponse httpServletResponse;
+	
+	/**
+	 * var evento = {
+  	 * id: 1,
+	 *   nome: 'Primeiro Braco',
+	 *   cidade: 'Massaranduba',
+	 *   estado: 'SC',
+	 *   localizacaoGeograficas: data
+	 * };
+	 * $.ajax({
+	 *   url: '/Trilha/resources/trilha',
+	 *   type: 'POST',
+	 *   data: JSON.stringify(evento),
+	 *   contentType: 'application/json; charset=utf-8',
+	 *   dataType: 'json'
+	 * });
+	 * 
+	 * @param trilhaXmlType
+	 * @return
+	 * @throws Exception
+	 */
 	@POST
 	@RolesAllowed({"Grupo","Administrador"})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public TrilhaXmlType salvar(TrilhaXmlType trilhaXmlType) throws Exception {
-		return this.trilhaServico.salvar(trilhaXmlType);
+		GrupoDeTrilheiros grupoDeTrilheiros = (GrupoDeTrilheiros) httpServletRequest.getSession().getAttribute("user");
+		if(grupoDeTrilheiros != null) {
+			trilhaXmlType.setGrupoDeTrilheirosXmlType(GrupoDeTrilheirosXmlAdapter.getInstance().marshal(grupoDeTrilheiros));
+			return this.trilhaServico.salvar(trilhaXmlType);
+		} else {
+			httpServletResponse.sendError(401);
+			return null;
+		}
 	}
 	
 	@GET

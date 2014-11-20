@@ -26,6 +26,8 @@ public class TrilhaXmlType implements Serializable {
 	
 	private List<LocalizacaoGeograficaXmlType> localizacaoGeograficas;
 	
+	private GrupoDeTrilheirosXmlType grupoDeTrilheirosXmlType;
+	
 	public TrilhaXmlType() {}
 
 	public Long getId() {
@@ -77,5 +79,14 @@ public class TrilhaXmlType implements Serializable {
 	public void setLocalizacaoGeograficas(List<LocalizacaoGeograficaXmlType> localizacaoGeograficas) {
 		this.localizacaoGeograficas = localizacaoGeograficas;
 	}
+
+	public GrupoDeTrilheirosXmlType getGrupoDeTrilheirosXmlType() {
+		return grupoDeTrilheirosXmlType;
+	}
+
+	public void setGrupoDeTrilheirosXmlType(GrupoDeTrilheirosXmlType grupoDeTrilheirosXmlType) {
+		this.grupoDeTrilheirosXmlType = grupoDeTrilheirosXmlType;
+	}
+	
 	
 }

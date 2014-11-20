@@ -1,8 +1,10 @@
 package trilhasbrasil.com.persistencia.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +36,7 @@ public class Trilha implements Serializable {
 	@OneToMany(mappedBy = "trilha")
 	private List<Evento> eventos;
 	
-	@OneToMany(mappedBy = "trilha")
+	@OneToMany(mappedBy = "trilha", cascade = CascadeType.ALL)
 	private List<LocalizacaoGeografica> localizacaoGeograficas;
 	
 	public Trilha() {}
@@ -60,6 +62,7 @@ public class Trilha implements Serializable {
 	}
 
 	public List<Imagens> getImagens() {
+		if(this.imagens == null) this.imagens = new ArrayList<Imagens>();
 		return imagens;
 	}
 
@@ -100,6 +103,7 @@ public class Trilha implements Serializable {
 	}
 
 	public List<LocalizacaoGeografica> getLocalizacaoGeograficas() {
+		if(this.localizacaoGeograficas == null) this.localizacaoGeograficas = new ArrayList<LocalizacaoGeografica>();
 		return localizacaoGeograficas;
 	}
 

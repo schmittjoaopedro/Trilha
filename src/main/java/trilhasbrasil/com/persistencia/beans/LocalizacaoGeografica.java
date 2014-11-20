@@ -45,5 +45,13 @@ public class LocalizacaoGeografica {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
+
+	public Trilha getTrilha() {
+		return trilha;
+	}
+
+	public void setTrilha(Trilha trilha) {
+		this.trilha = trilha;
+	}
 	
 }
