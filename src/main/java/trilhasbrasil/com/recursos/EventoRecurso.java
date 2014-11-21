@@ -20,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 
 import trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros;
 import trilhasbrasil.com.servico.EventoServico;
+import trilhasbrasil.com.xml.adapter.GrupoDeTrilheirosXmlAdapter;
 import trilhasbrasil.com.xml.type.EventoXmlType;
 
 @Path("/evento")
@@ -67,13 +68,20 @@ public class EventoRecurso {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public EventoXmlType salvarEvento(EventoXmlType eventoXmlType) throws Exception {
-		return eventoServico.salvar(eventoXmlType);
+		GrupoDeTrilheiros grupoDeTrilheiros = (GrupoDeTrilheiros) httpServletRequest.getSession().getAttribute("user");
+		if(grupoDeTrilheiros != null) {
+			eventoXmlType.setGrupoDeTrilheiros(GrupoDeTrilheirosXmlAdapter.getInstance().marshal(grupoDeTrilheiros));
+			return eventoServico.salvar(eventoXmlType);
+		} else {
+			httpServletResponse.sendError(401);
+			return null;
+		}
 	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<EventoXmlType> procurarTodosEventos() throws Exception {
-		return eventoServico.procurarTodosEventos();
+		return eventoServico.procurarTodosAPartirDeHoje();
 	}
 	
 	@GET

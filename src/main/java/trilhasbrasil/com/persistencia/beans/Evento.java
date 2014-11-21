@@ -14,11 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Evento.procurarProximosEventos", query = "SELECT e FROM Evento e WHERE e.date > :initdate AND e.date < :enddate ORDER BY e.date ASC")
+	@NamedQuery(name = "Evento.procurarProximosEventosEntre", query = "SELECT e FROM Evento e WHERE e.date > :initdate AND e.date < :enddate ORDER BY e.date ASC"),
+	@NamedQuery(name = "Evento.procurarProximosEventosAPartirDe", query = "SELECT e FROM Evento e WHERE e.date > :initdate ORDER BY e.date ASC"),
 })
 public class Evento implements Serializable {
 

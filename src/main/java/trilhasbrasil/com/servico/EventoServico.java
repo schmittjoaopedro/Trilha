@@ -43,7 +43,7 @@ public class EventoServico {
 	
 	@Transactional(value = TxType.REQUIRED)
 	public List<EventoXmlType> procurarEventosEntreAsDatas(Date initDate, Date endDate) throws Exception {
-		List<Evento> eventos = this.eventoDao.procurarProximosEventos(initDate, endDate);
+		List<Evento> eventos = this.eventoDao.procurarProximosEventosEntre(initDate, endDate);
 		List<EventoXmlType> eventosXmlTypes = new ArrayList<EventoXmlType>();
 		for(Evento evento : eventos) 
 			eventosXmlTypes.add(EventoXmlAdapter.getInstance().marshal(evento));
@@ -59,6 +59,15 @@ public class EventoServico {
 		} else {
 			return false;
 		}
+	}
+	
+	@Transactional(value = TxType.REQUIRED)
+	public List<EventoXmlType> procurarTodosAPartirDeHoje() throws Exception {
+		List<Evento> eventos = this.eventoDao.procurarProximosEventos();
+		List<EventoXmlType> eventosXmlTypes = new ArrayList<EventoXmlType>();
+		for(Evento evento : eventos) 
+			eventosXmlTypes.add(EventoXmlAdapter.getInstance().marshal(evento));
+		return eventosXmlTypes;
 	}
 	
 }

@@ -6,7 +6,6 @@ import trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros;
 import trilhasbrasil.com.persistencia.beans.Imagens;
 import trilhasbrasil.com.persistencia.beans.LocalizacaoGeografica;
 import trilhasbrasil.com.persistencia.beans.Trilha;
-import trilhasbrasil.com.xml.type.GrupoDeTrilheirosXmlType;
 import trilhasbrasil.com.xml.type.ImagemXmlType;
 import trilhasbrasil.com.xml.type.LocalizacaoGeograficaXmlType;
 import trilhasbrasil.com.xml.type.TrilhaXmlType;

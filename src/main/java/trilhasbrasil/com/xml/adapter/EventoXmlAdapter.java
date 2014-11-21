@@ -3,8 +3,10 @@ package trilhasbrasil.com.xml.adapter;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import trilhasbrasil.com.persistencia.beans.Evento;
+import trilhasbrasil.com.persistencia.beans.GrupoDeTrilheiros;
 import trilhasbrasil.com.persistencia.beans.Imagens;
 import trilhasbrasil.com.xml.type.EventoXmlType;
+import trilhasbrasil.com.xml.type.GrupoDeTrilheirosXmlType;
 import trilhasbrasil.com.xml.type.ImagemXmlType;
 
 public final class EventoXmlAdapter extends XmlAdapter<EventoXmlType, Evento> {
@@ -27,8 +29,11 @@ public final class EventoXmlAdapter extends XmlAdapter<EventoXmlType, Evento> {
 		eventoXmlType.setDescricao(evento.getDescricao());
 		eventoXmlType.setNome(evento.getNome());
 		eventoXmlType.setCusto(evento.getCusto());
-		if(evento.getGrupoDeTrilheiros() != null)
-			eventoXmlType.setGrupoDeTrilheiros(GrupoDeTrilheirosXmlAdapter.getInstance().marshal(evento.getGrupoDeTrilheiros()));
+		if(evento.getGrupoDeTrilheiros() != null) {
+			GrupoDeTrilheirosXmlType grupoDeTrilheirosXmlType = new GrupoDeTrilheirosXmlType();
+			eventoXmlType.setGrupoDeTrilheiros(grupoDeTrilheirosXmlType);
+			eventoXmlType.getGrupoDeTrilheiros().setId(evento.getGrupoDeTrilheiros().getId());
+		}
 		if(evento.getImagems() != null)
 			for(Imagens imagens : evento.getImagems()) 
 				eventoXmlType.getImagems().add(ImagemXmlAdapter.getInstance().marshal(imagens));
@@ -43,8 +48,11 @@ public final class EventoXmlAdapter extends XmlAdapter<EventoXmlType, Evento> {
 		evento.setDescricao(eventoXmlType.getDescricao());
 		evento.setNome(eventoXmlType.getNome());
 		evento.setCusto(eventoXmlType.getCusto());
-		if(eventoXmlType.getGrupoDeTrilheiros() != null)
-			evento.setGrupoDeTrilheiros(GrupoDeTrilheirosXmlAdapter.getInstance().unmarshal(eventoXmlType.getGrupoDeTrilheiros()));
+		if(eventoXmlType.getGrupoDeTrilheiros() != null) {
+			GrupoDeTrilheiros grupoDeTrilheiros = new GrupoDeTrilheiros();
+			evento.setGrupoDeTrilheiros(grupoDeTrilheiros);
+			evento.getGrupoDeTrilheiros().setId(eventoXmlType.getGrupoDeTrilheiros().getId());
+		}
 		if(eventoXmlType.getImagems() != null)
 			for(ImagemXmlType imagemXmlType : eventoXmlType.getImagems())
 				evento.getImagems().add(ImagemXmlAdapter.getInstance().unmarshal(imagemXmlType));

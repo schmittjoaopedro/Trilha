@@ -7,5 +7,7 @@ import trilhasbrasil.com.persistencia.beans.Evento;
 
 public interface EventoDao extends GenericoDao<Evento> {
 
-	public List<Evento> procurarProximosEventos(Date initDate, Date endDate);
+	public List<Evento> procurarProximosEventosEntre(Date initDate, Date endDate);
+	
+	public List<Evento> procurarProximosEventos();
 }
