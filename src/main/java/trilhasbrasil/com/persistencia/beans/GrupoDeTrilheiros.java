@@ -47,7 +47,7 @@ public class GrupoDeTrilheiros implements Serializable {
 	@OneToMany(mappedBy = "grupoDeTrilheiros")
 	private List<Trilheiro> trilheiros;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "grupoDeTrilheiros")
 	private List<Trilha> trilhas;
 	
 	@OneToMany(mappedBy = "grupoDeTrilheiros")

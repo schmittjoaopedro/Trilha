@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drawing tools</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing"></script>
+    <script>
+
+		var drawingManager,map, overlayobj; 
+		
+		function initialize() {
+			
+			var mapOptions = {
+				center: new google.maps.LatLng(-26.397, -49.644),
+				zoom: 8
+			};
+		
+			map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		  
+			drawingManager = new google.maps.drawing.DrawingManager({
+				drawingMode: google.maps.drawing.OverlayType.MARKER,
+				drawingControl: true,
+				drawingControlOptions: {
+					position: google.maps.ControlPosition.TOP_CENTER,
+					drawingModes: [
+						google.maps.drawing.OverlayType.POLYLINE
+					]
+				}
+			});
+			drawingManager.setMap(map);
+		
+			google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+				overlayobj = event;
+				console.log(overlayobj.overlay.getPath().getArray());
+			});
+		}
+		
+		function overlayClickListener(overlay) {
+			google.maps.event.addListener(overlay, "mouseup", function(event){
+				$('#vertices').val(overlay.getPath().getArray());
+			});
+		}
+		
+		google.maps.event.addDomListener(window, 'load', initialize);
+		
+		function saveDrawedMap() {
+			
+			var data = [];
+			overlayobj.overlay.getPath().getArray().forEach(function (item) {
+				data.push({
+				latitude: item.k,
+				longitude: item.B
+				});
+			});
+			
+			var evento = {
+				nome: $('#nome').val(),
+				cidade: $('#nome').val(),
+				estado: $('#estado').val(),
+				localizacaoGeograficas: data
+			};
+			$.ajax({
+				url: '/Trilha/resources/trilha',
+				type: 'POST',
+				data: JSON.stringify(evento),
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json'
+			});
+		
+		}
+
+    </script>
+	</head>
+	<body>
+    	<label>Nome</label>
+		<input type="text" name="nome" value="" id="nome"  />
+	  	<label>Cidade</label>
+	  	<input type="text" name="cidade" value="" id="cidade"  />
+	  	<label>Estado</label>
+	  	<input type="text" name="estado" value="" id="estado"  />
+	  	<button id="save" onclick="saveDrawedMap()">Salvar</button>
+    	<div id="map-canvas"></div>
+  	</body>
+</html>

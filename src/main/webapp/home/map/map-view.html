@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drawing tools</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing"></script>
+    <script>
+
+    	var drawingManager,map, overlayobj; 
+
+		function initialize() {
+		  var mapOptions = {
+		    center: new google.maps.LatLng(-26.397, -49.644),
+		    zoom: 8
+		  };
+
+		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+			$.ajax({
+				url: '/Trilha/resources/trilha',
+				type: 'GET',
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				success: function (data) {
+					data.forEach(function(item) {
+						processCordenates(item);
+					});
+				}
+			});
+
+		}
+
+		function processCordenates(data) {
+			var flightPlanCoordinates = [];
+			data.localizacaoGeograficas.forEach(function(items) {
+				flightPlanCoordinates.push(new google.maps.LatLng(items.latitude, items.longitude));
+			});
+			var flightPath = new google.maps.Polyline({
+				path: flightPlanCoordinates,
+				geodesic: true,
+				strokeColor: '#FF0000',
+				strokeOpacity: 1,
+				strokeWeight: 2
+			});
+			flightPath.setMap(map);
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>

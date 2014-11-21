@@ -34,6 +34,14 @@ public class TrilhaRecurso {
 	private HttpServletResponse httpServletResponse;
 	
 	/**
+	 * var data = [];
+	 * overlayobj.overlay.getPath().getArray().forEach(function (item) {
+	 *   data.push({
+	 *     latitude: item.k,
+	 *     longitude: item.B
+	 *   });
+	 * });
+	 * data
 	 * var evento = {
   	 * id: 1,
 	 *   nome: 'Primeiro Braco',

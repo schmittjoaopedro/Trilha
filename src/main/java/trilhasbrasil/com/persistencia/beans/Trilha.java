@@ -30,7 +30,7 @@ public class Trilha implements Serializable {
 	
 	private String estado;
 	
-	@ManyToMany(mappedBy = "trilhas")
+	@ManyToMany
 	private List<GrupoDeTrilheiros> grupoDeTrilheiros;
 	
 	@OneToMany(mappedBy = "trilha")
@@ -87,6 +87,7 @@ public class Trilha implements Serializable {
 	}
 
 	public List<GrupoDeTrilheiros> getGrupoDeTrilheiros() {
+		if(this.grupoDeTrilheiros == null) this.grupoDeTrilheiros = new ArrayList<GrupoDeTrilheiros>();
 		return grupoDeTrilheiros;
 	}
 
