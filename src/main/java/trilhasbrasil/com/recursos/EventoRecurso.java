@@ -81,7 +81,12 @@ public class EventoRecurso {
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<EventoXmlType> procurarTodosEventos() throws Exception {
-		return eventoServico.procurarTodosAPartirDeHoje();
+		GrupoDeTrilheiros grupoDeTrilheiros = (GrupoDeTrilheiros) httpServletRequest.getSession().getAttribute("user");
+		if(grupoDeTrilheiros != null) {
+			return eventoServico.procurarTodosAPartirDeHoje(grupoDeTrilheiros.getId());
+		} else {
+			return eventoServico.procurarTodosAPartirDeHoje();
+		}
 	}
 	
 	@GET

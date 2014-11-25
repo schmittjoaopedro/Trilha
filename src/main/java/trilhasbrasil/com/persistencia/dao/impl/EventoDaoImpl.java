@@ -38,4 +38,12 @@ public class EventoDaoImpl extends GenericoDaoImpl<Evento> implements EventoDao 
 		return (List<Evento>) query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Evento> procurarProximosEventosPorDono(Long grupoId) {
+		Query query = this.getEntityManager().createNamedQuery("Evento.procurarProximosEventosPorDono");
+		query.setParameter("initdate", new Date(), TemporalType.DATE);
+		query.setParameter("grupoId", grupoId);
+		return (List<Evento>) query.getResultList();
+	}
+
 }

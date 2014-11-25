@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 @NamedQueries({
 	@NamedQuery(name = "Evento.procurarProximosEventosEntre", query = "SELECT e FROM Evento e WHERE e.date > :initdate AND e.date < :enddate ORDER BY e.date ASC"),
 	@NamedQuery(name = "Evento.procurarProximosEventosAPartirDe", query = "SELECT e FROM Evento e WHERE e.date > :initdate ORDER BY e.date ASC"),
+	@NamedQuery(name = "Evento.procurarProximosEventosPorDono", query = "SELECT e FROM Evento e WHERE e.date > :initdate AND e.grupoDeTrilheiros.id = :grupoId ORDER BY e.date ASC")
 })
 public class Evento implements Serializable {
 

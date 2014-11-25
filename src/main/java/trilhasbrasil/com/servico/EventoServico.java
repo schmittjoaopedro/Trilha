@@ -70,6 +70,15 @@ public class EventoServico {
 		return eventosXmlTypes;
 	}
 	
+	@Transactional(value = TxType.REQUIRED)
+	public List<EventoXmlType> procurarTodosAPartirDeHoje(Long grupoId) throws Exception {
+		List<Evento> eventos = this.eventoDao.procurarProximosEventosPorDono(grupoId);
+		List<EventoXmlType> eventosXmlTypes = new ArrayList<EventoXmlType>();
+		for(Evento evento : eventos) 
+			eventosXmlTypes.add(EventoXmlAdapter.getInstance().marshal(evento));
+		return eventosXmlTypes;
+	}
+	
 }
 
 

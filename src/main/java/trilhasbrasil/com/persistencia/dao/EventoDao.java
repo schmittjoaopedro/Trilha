@@ -10,4 +10,6 @@ public interface EventoDao extends GenericoDao<Evento> {
 	public List<Evento> procurarProximosEventosEntre(Date initDate, Date endDate);
 	
 	public List<Evento> procurarProximosEventos();
+	
+	public List<Evento> procurarProximosEventosPorDono(Long grupoId);
 }
