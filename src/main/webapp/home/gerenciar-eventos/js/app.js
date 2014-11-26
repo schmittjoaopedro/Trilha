@@ -17,7 +17,6 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
     
     function loadData() {
 	    $http.get("/Trilha/resources/evento").success(function(data){
-	    	console.info(data);
 	        angular.extend($scope, {
 	            eventos: data
 	        });
@@ -31,7 +30,7 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
     $scope.salvar = function(){
         $http.post("/Trilha/resources/evento", $scope.form).success(function(data){
             alert("Evento salvo com sucesso!");
-            window.location = "/Trilha/home";
+            loadData();
         }).error(function(error){
             alert("Ocorrou algum erro!");
         });
@@ -44,11 +43,32 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
     };
     
     $scope.remover = function(evento) {
-    	console.info(evento);
+    	$http.delete("/Trilha/resources/evento/" + evento.id).success(function() {
+    		loadData();
+    		alert("Evento removido com sucesso!");
+    	}).error(function() {
+    		loadData();
+            alert("Ocorrou algum erro!");
+    	});
     };
     
     $scope.modificar = function(evento) {
     	$scope.form = angular.copy(evento);
+    };
+    
+    $scope.novo = function() {
+    	$scope.form = {
+        	id: 0,
+            nome: '',
+            descricao: '',
+            custo: '',
+            imagems: [
+                {
+                    url: '',
+                }
+            ],
+            data: new Date()
+        };
     };
     
 });
