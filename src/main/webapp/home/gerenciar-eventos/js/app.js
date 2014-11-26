@@ -15,13 +15,17 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
         }
     });
     
-    $http.get("/Trilha/resources/evento", $scope.form).success(function(data){
-        angular.extend($scope, {
-            eventos: data
-        });
-    }).error(function(error){
-        alert("Ocorrou algum erro!");
-    });
+    function loadData() {
+	    $http.get("/Trilha/resources/evento", $scope.form).success(function(data){
+	        angular.extend($scope, {
+	            eventos: data
+	        });
+	    }).error(function(error){
+	        alert("Ocorrou algum erro!");
+	    });
+    }
+    
+    loadData();
     
     $scope.salvar = function(){
         $http.post("/Trilha/resources/evento", $scope.form).success(function(data){
@@ -36,6 +40,14 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
         $http.delete("/Trilha/resources/autenticacao").success(function(){
             window.location = "/Trilha";
         });
+    };
+    
+    $scope.remover = function(evento) {
+    	console.info(evento);
+    };
+    
+    $scope.modificar = function(evento) {
+    	$scope.form = angular.copy(evento);
     };
     
 });

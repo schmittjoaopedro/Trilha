@@ -41,12 +41,7 @@
 		</nav>
     	<div class="container container-new-user">
     		<div class="row">
-        		<div class="col-sm-5">
-       				<div class="row" ng-repeat="evento in eventos | orderBy:'data'">
-       					{{evento.id}} | {{evento.nome}} | {{evento.data}}
-       				</div>
-        		</div>
-        		<div class="col-sm-5">
+        		<div class="col-sm-6">
         			<form role="form" name="myForm">
         				<div class="form-group">
                             <label>Identificador do evento</label>
@@ -76,6 +71,36 @@
                             <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Salvar
                         </button>                        
                     </form>
+        		</div>
+        		<div class="col-sm-6">
+        			<table border="1">
+        				<thead>
+        					<tr>
+        						<td>ID</td>
+        						<td>Nome</td>
+        						<td>Data</td>
+        						<td>Remover</td>
+        						<td>Modificar</td>
+       						</tr>
+   						</thead>
+   						<tbody>
+		       				<tr ng-repeat="evento in eventos | orderBy:'data'">
+        						<td>{{evento.id}}</td>
+        						<td>{{evento.nome}}</td>
+        						<td>{{evento.data | date: 'dd/MM/yyyy'}}</td>
+        						<td>
+        							<button type="submit" class="btn-xs btn-danger" ng-click="remover(evento)" >
+		                            	<i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Remover
+		                        	</button>
+	                        	</td>
+	                        	<td>
+        							<button type="submit" class="btn-xs btn-warning" ng-click="modificar(evento)" >
+		                            	<i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Modificar
+		                        	</button>
+	                        	</td>
+		       				</tr>
+	       				</tbody>
+       				</table>
         		</div>
         	</div>
     	</div>
