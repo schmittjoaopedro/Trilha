@@ -30,6 +30,7 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
     $scope.salvar = function(){
         $http.post("/Trilha/resources/evento", $scope.form).success(function(data){
             alert("Evento salvo com sucesso!");
+            novo();
             loadData();
         }).error(function(error){
             alert("Ocorrou algum erro!");
@@ -56,7 +57,7 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
     	$scope.form = angular.copy(evento);
     };
     
-    $scope.novo = function() {
+    var novo = function() {
     	$scope.form = {
         	id: 0,
             nome: '',
@@ -70,5 +71,6 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
             data: new Date()
         };
     };
+    $scope.novo = novo;
     
 });
