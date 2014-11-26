@@ -95,6 +95,7 @@ public class GrupoDeTrilheirosXmlType implements Serializable {
 	}
 
 	public List<TrilheiroXmlType> getTrilheiros() {
+                if(this.trilheiros == null) this.trilheiros = new ArrayList<TrilheiroXmlType>();
 		return trilheiros;
 	}
 

@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import trilhasbrasil.com.persistencia.beans.Imagens;
 import trilhasbrasil.com.persistencia.beans.Trilheiro;
+import trilhasbrasil.com.xml.type.GrupoDeTrilheirosXmlType;
 import trilhasbrasil.com.xml.type.ImagemXmlType;
 import trilhasbrasil.com.xml.type.TrilheiroXmlType;
 
@@ -25,7 +26,11 @@ public final class TrilheiroXmlAdapter extends XmlAdapter<TrilheiroXmlType, Tril
 		trilheiroXmlType.setEmail(trilheiro.getEmail());
 		trilheiroXmlType.setNome(trilheiro.getNome());
 		trilheiroXmlType.setTelefone(trilheiro.getTelefone());
-		trilheiroXmlType.setGrupoDeTrilheirosXmlType(GrupoDeTrilheirosXmlAdapter.getInstance().marshal(trilheiro.getGrupoDeTrilheiros()));
+                if(trilheiro.getGrupoDeTrilheiros() != null) {
+                    GrupoDeTrilheirosXmlType grupoDeTrilheirosXmlType = new GrupoDeTrilheirosXmlType();
+                    grupoDeTrilheirosXmlType.setId(trilheiro.getGrupoDeTrilheiros().getId());
+                    trilheiroXmlType.setGrupoDeTrilheirosXmlType(grupoDeTrilheirosXmlType);
+                }
 		for(Imagens imagens : trilheiro.getImagens())
 			trilheiroXmlType.getImagemXmlTypes().add(ImagemXmlAdapter.getInstance().marshal(imagens));
 		return trilheiroXmlType;
