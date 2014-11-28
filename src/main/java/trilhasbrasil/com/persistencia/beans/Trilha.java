@@ -10,9 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Trilha.procurarTrilhasPorEstado", query = "SELECT t FROM Trilha t JOIN t.grupoDeTrilheiros gp WHERE gp.estado LIKE :nomeDoEstado"),
+	@NamedQuery(name = "Trilha.procurarTrilhasPorGrupoDeTrilheiros", query = "SELECT T FROM Trilha T JOIN T.grupoDeTrilheiros GP WHERE GP.nome LIKE :nomeDoGrupo")
+})
 public class Trilha implements Serializable {
 
 	private static final long serialVersionUID = 1L;

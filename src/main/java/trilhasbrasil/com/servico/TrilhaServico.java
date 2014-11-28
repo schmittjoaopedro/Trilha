@@ -28,11 +28,7 @@ public class TrilhaServico {
 	
 	@Transactional(value = TxType.REQUIRED)
 	public List<TrilhaXmlType> procurarTodasAsTrilhas() throws Exception {
-		List<Trilha> trilhas = this.trilhaDao.procurarTodos();
-		List<TrilhaXmlType> trilhaXmlTypes = new ArrayList<TrilhaXmlType>();
-		for(Trilha trilha : trilhas) 
-			trilhaXmlTypes.add(TrilhaXmlAdapter.getInstance().unmarshal(trilha));
-		return trilhaXmlTypes;
+		return processarLista(this.trilhaDao.procurarTodos());
 	}
 	
 	@Transactional(value = TxType.REQUIRED)
@@ -43,6 +39,29 @@ public class TrilhaServico {
 	@Transactional(value = TxType.REQUIRES_NEW)
 	public Boolean removerTrilhaPorId(Long id) {
 		return this.trilhaDao.remove(id);
+	}
+	
+	@Transactional(value = TxType.REQUIRED)
+	public List<TrilhaXmlType> procurarTrilhasPorEstado(String nomeDoEstado) throws Exception {
+		return processarLista(this.trilhaDao.procurarTrilhasPorEstado(nomeDoEstado));
+	}
+	
+	@Transactional(value = TxType.REQUIRED)
+	public List<TrilhaXmlType> procurarTrilhasPorGrupo(String nomeDoGrupo) throws Exception {
+		return processarLista(this.trilhaDao.procurarTrilhasPorGrupoDeTrilheiros(nomeDoGrupo));
+	}
+	
+	
+	
+	
+	private List<TrilhaXmlType> processarLista(List<Trilha> trilhas) throws Exception {
+		List<TrilhaXmlType> trilhaXmlTypes = new ArrayList<TrilhaXmlType>();
+		for(Trilha trilha : trilhas) {
+			TrilhaXmlType trilhaXmlType = TrilhaXmlAdapter.getInstance().unmarshal(trilha);
+			trilhaXmlType.setLocalizacaoGeograficas(null);
+			trilhaXmlTypes.add(trilhaXmlType);
+		}
+		return trilhaXmlTypes;
 	}
 	
 }

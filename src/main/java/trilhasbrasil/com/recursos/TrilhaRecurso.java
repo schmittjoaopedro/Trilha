@@ -102,5 +102,20 @@ public class TrilhaRecurso {
 		return this.trilhaServico.removerTrilhaPorId(id);
 	}
 	
+	@GET
+	@Path("/{estado}")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<TrilhaXmlType> procurarTrilhasPorEstado(@PathParam("estado") String nomeDoEstado) throws Exception {
+		return this.trilhaServico.procurarTrilhasPorEstado(nomeDoEstado);
+	}
+	
+	@GET
+	@Path("/{nome}")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<TrilhaXmlType> procurarTrilhasPorGrupoDeTrilheiro(@PathParam("nome") String nome) throws Exception {
+		return this.trilhaServico.procurarTrilhasPorGrupo(nome);
+	}
 	
 }
