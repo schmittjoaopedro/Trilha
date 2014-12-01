@@ -1,6 +1,8 @@
 angular.module("App", ['mgcrea.ngStrap']).controller("NewUserController", function ($scope, $window, $http) {
 
     angular.extend($scope, {
+        estados: [],
+        cidades: [],
         form: {
             name: "",
             cidade: "",
@@ -28,36 +30,44 @@ angular.module("App", ['mgcrea.ngStrap']).controller("NewUserController", functi
     $scope.newUser = function () {
         $window.location.href = "/Trilha/new-user";
     };
-
-    $scope.$watch('form.cidade', function (newValue, oldValue) {
-        if (angular.isObject(newValue)) {
-            $scope.form.estado = newValue.address_components[newValue.address_components.length - 2].short_name;
-        } else {
-            $scope.form.estado = '';
+    
+    $scope.getCidades = function () {                
+        if($scope.validarEstado() == false){                                   
+            return $scope.cidades[$scope.form.estado.valor].cidades;
         }
-    });
-
-    $scope.getAddress = function (viewValue) {
-        var params = {address: viewValue, sensor: false};
-        return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {params: params})
-                .then(function (res) {
-                    angular.forEach(res.data.results, function (o) {
-                        o.label = o.address_components[0].short_name;
-                    });
-                    return res.data.results;
-                });
+        return [];
     };
 
-    $scope.validarCidade = function (obj) {
-        if (!angular.isObject(obj)) {
-            alert("Selecione uma cidade!");
+    $scope.validar = function () {
+        if (!angular.isObject($scope.form.estado)) {            
+            alert("Selecione um estado!");
             return false;
-        }
+        }        
         return true;
     };
-
+    
+    $scope.validarEstado = function () {
+        if (angular.isObject($scope.form.estado)) {                        
+            return false;
+        }
+        $scope.form.cidade = "";
+        return true;
+    };        
+    
+    $http.get("/Trilha/json/estados.json").success(function(data){
+        angular.extend($scope, {
+            estados: data
+        });
+    });
+    
+    $http.get("/Trilha/json/cidades.json").success(function(data){
+        angular.extend($scope, {
+            cidades: data
+        });
+    });
+    
     $scope.save = function () {
-        if ($scope.validarCidade($scope.form.cidade)) {
+        if ($scope.validar()) {            
             $http({
                 url: '/Trilha/resources/grupodetrilheiros',
                 method: 'POST',
@@ -65,8 +75,8 @@ angular.module("App", ['mgcrea.ngStrap']).controller("NewUserController", functi
                     nome: $scope.form.name,
                     login: $scope.form.login,
                     senha: $scope.form.password,
-                    cidade: $scope.form.cidade.address_components[0].short_name,
-                    estado: $scope.form.estado
+                    cidade: $scope.form.cidade,
+                    estado: $scope.form.estado.nome
                 },
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8',

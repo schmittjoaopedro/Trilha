@@ -1,0 +1,137 @@
+[
+    {
+        "sigla": "AC",
+        "nome": "Acre",
+        "valor": "0"
+    },
+    {
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "valor": "1"
+    },
+    {
+        "sigla": "AM",
+        "nome": "Amazonas",
+        "valor": "2"
+    },
+    {
+        "sigla": "AP",
+        "nome": "Amapá",
+        "valor": "3"        
+    },
+    {
+        "sigla": "BA",
+        "nome": "Bahia",
+        "valor": "4"
+    },
+    {
+        "sigla": "CE",
+        "nome": "Ceará",
+        "valor": "5"
+    },
+    {
+        "sigla": "DF",
+        "nome": "Distrito Federal",
+        "valor": "6"
+    },
+    {
+        "sigla": "ES",
+        "nome": "Espírito Santo",
+        "valor": "7"
+    },
+    {
+        "sigla": "GO",
+        "nome": "Goiás",
+        "valor": "8"
+    },
+    {
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "valor": "9"
+    },
+    {
+        "sigla": "MG",
+        "nome": "Minas Gerais",
+        "valor": "10"
+    },
+    {
+        "sigla": "MS",
+        "nome": "Mato Grosso do Sul",
+        "valor": "11"
+    },
+    {
+        "sigla": "MT",
+        "nome": "Mato Grosso",
+        "valor": "12"
+    },
+    {
+        "sigla": "PA",
+        "nome": "Pará",
+        "valor": "13"
+    },
+    {
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "valor": "14"
+    },
+    {
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "valor": "15"
+    },
+    {
+        "sigla": "PI",
+        "nome": "Piauí",
+        "valor": "16"
+    },
+    {
+        "sigla": "PR",
+        "nome": "Paraná",
+        "valor": "17"
+    },
+    {
+        "sigla": "RJ",
+        "nome": "Rio de Janeiro",
+        "valor": "18"
+    },
+    {
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "valor": "19"
+    },
+    {
+        "sigla": "RO",
+        "nome": "Rondônia",
+        "valor": "20"
+    },
+    {
+        "sigla": "RR",
+        "nome": "Roraima",
+        "valor": "21"
+    },    
+    {
+        "sigla": "RS",
+        "nome": "Rio Grande do Sul",
+        "valor": "22"
+    },
+    {
+        "sigla": "SC",
+        "nome": "Santa Catarina",
+        "valor": "23"
+    },
+    {
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "valor": "24"
+    },
+    {
+        "sigla": "SP",
+        "nome": "São Paulo",
+        "valor": "25"
+    },
+    {
+        "sigla": "TO",
+        "nome": "Tocantins",
+        "valor": "26"
+    }
+]

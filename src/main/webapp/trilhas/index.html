@@ -7,8 +7,8 @@
         <meta name="description" content="Trilha Brasil">
         <meta name="author" content="Fabrício Ronchi - João Schimitt">
         <link rel="icon" href="img/icon.svg">
-        <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
     </head>
     <body ng-controller="IndexController" class="ng-cloak">
 
@@ -24,7 +24,7 @@
                     <a class="navbar-brand" href="/Trilha">Trilha Brasil</a>
                 </div>        
                 <ul class="nav navbar-nav">
-                    <li><a href="/Trilha/trilhas">Trilhas</a></li>                    
+                    <li class="active"><a href="/Trilha/trilhas">Trilhas</a></li>                    
                 </ul>
                 <div id="navbar" class="navbar-collapse collapse" >
                     <form class="navbar-form navbar-right" role="form" ng-if="existUser == 'true'">                    
@@ -48,42 +48,43 @@
                     </form>
                 </div>
             </div>
-        </nav>                   
-        <div class="container container-index" class="ng-cloack">            
+        </nav>                           
+        <div class="container container-new-user">
             <div class="row">
-                <div class="col-sm-9">
-                    <div ng-repeat="evento in eventos| orderBy:'data'">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="row">                                
-                                    <div class="col-sm-12">
-                                        <a href="#" class="thumbnail">
-                                            <img ng-src="{{evento.imagems[0].url}}" alt="Imagem do evento">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4>Data: {{getDate(evento.data)}}</h4>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-primary btn-detalhes" ng-click="show(1)">
-                                        <i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;Detalhes
+                <div class="col-sm-3">                                       
+                    <input type="text" class="form-control" data-animation="am-flip-x" ng-options="est as est.nome for est in estados" placeholder="Estado" ng-model="form.estado" bs-typeahead>
+                </div>
+                <div class="col-sm-5">
+                    <button type="button" class="btn btn-primary" ng-click="pesquisar()">
+                        <i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Buscar
+                    </button>                        
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="text-center" width="100px">Código</th>
+                                <th>Descrição</th>
+                                <th class="text-center" width="150px">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center" width="100px">2</td>
+                                <td>Trilha de massaranduba</td>
+                                <td class="text-center" width="150px">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                        Ver no Mapa
                                     </button>
-                                </div>
-                            </div>
-                            <div class="row" ng-show="showDetalhes(1)">
-                                <div class="col-sm-12 text-center">
-                                    <h4>{{evento.descricao}}</h4>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </td>                                    
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-sm-3">
-                    Anuncie aqui!
-                </div>
-            </div>
-        </div>                                    
+            </div>                  
+        </div>                
         <div class="container">
             <hr>
             <footer>
@@ -91,11 +92,10 @@
             </footer>      
         </div>      
         <br>                
-        <script type="text/javascript" src="libs/jquery/jquery.js"></script>
-        <script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="libs/angularjs/js/angular.min.js"></script>                
-        <script type="text/javascript" src="libs/angular-strap/js/angular-strap.min.js"></script>
-        <script type="text/javascript" src="app.js"></script>        
+        <script type="text/javascript" src="../libs/jquery/jquery.js"></script>
+        <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../libs/angularjs/js/angular.min.js"></script>                
+        <script type="text/javascript" src="../libs/angular-strap/js/angular-strap.min.js"></script>        
         <script type="text/javascript" src="js/app.js"></script>   
     </body>
 </html>

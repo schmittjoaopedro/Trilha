@@ -44,15 +44,15 @@
                         <div class="form-group">
                             <label>Nome do grupo</label>
                             <input type="text" class="form-control" placeholder="Nome do grupo" ng-model="form.name" required>
-                        </div>                                             
-                        <div class="form-group">
-                            <label>Cidade</label>                            
-                            <input type="text" class="form-control" ng-blur="validarCidade(form.cidade)" data-animation="am-flip-x" ng-options="address as (address.address_components[0].long_name + ' ' + address.address_components[address.address_components.length - 2].short_name) for address in getAddress($viewValue)" placeholder="Cidade" ng-model="form.cidade" required bs-typeahead>         
                         </div>
                         <div class="form-group">
                             <label>Estado</label>
-                            <input type="text" class="form-control" placeholder="Estado" ng-model="form.estado" ng-readonly="true">
+                            <input type="text" class="form-control" data-animation="am-flip-x" ng-options="est as est.nome for est in estados" placeholder="Estado" ng-model="form.estado" bs-typeahead>                            
                         </div>
+                        <div class="form-group">
+                            <label>Cidade</label>                                                        
+                            <input type="text" class="form-control" data-animation="am-flip-x" ng-options="cid as cid for cid in getCidades()" placeholder="Cidade" ng-model="form.cidade" ng-disabled="validarEstado()" required bs-typeahead>
+                        </div>                        
                         <div class="form-group">
                             <label>Login</label>
                             <input type="text" class="form-control" placeholder="Login" ng-model="form.login" required>
