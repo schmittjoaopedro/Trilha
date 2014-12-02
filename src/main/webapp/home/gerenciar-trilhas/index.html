@@ -9,6 +9,7 @@
         <link rel="icon" href="img/icon.svg" >
         <link href="../../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
         <link href="../../css/style.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
     </head>
     <body ng-controller="EventosController" class="ng-cloak">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -25,8 +26,8 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="/Trilha/home/gerenciar-eventos">Gerenciar meus eventos</a></li>
-                        <li class="active"><a href="/Trilha/home/gerenciar-trilheiros">Gerenciar Trilheiros</a></li>
-                    	<li><a href="/Trilha/home/gerenciar-trilhas">Gerenciar Trilhas</a></li>
+                    	<li><a href="/Trilha/home/gerenciar-trilheiros">Gerenciar Trilheiros</a></li>
+                    	<li class="active" ><a href="/Trilha/home/gerenciar-trilhas">Gerenciar Trilhas</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -43,34 +44,7 @@
         <div class="container container-new-user">
             <div class="row">
                 <div class="col-sm-6">
-                    <form role="form" name="myForm">
-                        <div class="form-group">
-                            <label>Identificador do trilheiro</label>
-                            <input type="text" class="form-control" placeholder="Nome do trileiro" ng-model="form.id" ng-readonly="true" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Nome do trilehro</label>
-                            <input type="text" class="form-control" placeholder="Nome do evento" ng-model="form.nome" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" placeholder="Email" ng-model="form.email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Telefone</label>
-                            <input type="text" class="form-control" placeholder="Telefone" ng-model="form.telefone" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Imagem</label>
-                            <input type="text" class="form-control" placeholder="Link da imagem" ng-model="form.imagems[0].url" required>
-                        </div>                        
-                        <button type="button" class="btn btn-success" ng-disabled="myForm.$invalid" ng-click="salvar()">
-                            <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Salvar
-                        </button>    
-                        <button type="button" class="btn btn-success" ng-click="novo()">
-                            <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Novo
-                        </button>
-                    </form>
+                    <canvas id="map"></canvas>
                 </div>
                 <div class="col-sm-6">
                     <table border="1">
@@ -101,6 +75,7 @@
             </div>
         </div>
     </body>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing"></script>
     <script type="text/javascript" src="../../libs/jquery/jquery.js"></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../libs/angularjs/js/angular.min.js"></script>                
