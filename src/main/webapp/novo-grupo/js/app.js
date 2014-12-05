@@ -38,9 +38,21 @@ angular.module("App", ['mgcrea.ngStrap']).controller("NewUserController", functi
         return [];
     };
 
-    $scope.validar = function () {
+    $scope.validar = function () {                
+        var passou = true;
+        var _for = $scope.cidades[$scope.form.estado.valor].cidades;
         if (!angular.isObject($scope.form.estado)) {            
             alert("Selecione um estado!");
+            return false;
+        }                            
+        for(var i = 0; i < _for.length; i++){            
+            if($scope.form.cidade == _for[i]){                
+                passou = false;
+                i = _for.length;                             
+            }
+        }
+        if (passou){
+            alert("Selecione uma cidade!");
             return false;
         }        
         return true;

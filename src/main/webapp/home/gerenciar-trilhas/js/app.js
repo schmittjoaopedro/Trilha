@@ -1,6 +1,8 @@
 angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", function ($scope, $http) {
 
     angular.extend($scope, {
+        estados: [],
+        cidades: [],
         form: {
             id: 0,
             nome: '',
@@ -19,6 +21,33 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
             localizacaoGeograficas: []
         }
     });
+
+    $http.get("/Trilha/json/estados.json").success(function (data) {
+        angular.extend($scope, {
+            estados: data
+        });
+    });
+
+    $http.get("/Trilha/json/cidades.json").success(function (data) {
+        angular.extend($scope, {
+            cidades: data
+        });
+    });
+    
+    $scope.getCidades = function () {                
+        if($scope.validarEstado() == false){                                   
+            return $scope.cidades[$scope.map.estado.valor].cidades;
+        }
+        return [];
+    };
+    
+    $scope.validarEstado = function () {
+        if (angular.isObject($scope.map.estado)) {                        
+            return false;
+        }
+        $scope.map.cidade = "";
+        return true;
+    };
 
     $scope.salvar = function () {
         $http.post("/Trilha/resources/trilha", $scope.form).success(function (data) {
@@ -52,7 +81,8 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
         }).error(function (error) {
             window.location = "/Trilha/home";
         });
-    };
+    }
+    ;
 
     loadData();
 
@@ -77,7 +107,21 @@ angular.module("App", ['mgcrea.ngStrap']).controller("EventosController", functi
     };
 
     $scope.salvarTrilha = function (map) {
-        $http.post('/Trilha/resources/trilha', map).success(function () {
+        var passou = true;
+        var _for = $scope.cidades[$scope.map.estado.valor].cidades;
+        for(var i = 0; i < _for.length; i++){            
+            if($scope.map.cidade == _for[i]){                
+                passou = false;
+                i = _for.length;                             
+            }
+        }
+        if (passou){
+            alert("Selecione uma cidade!");
+            return false;
+        }
+        var obj = map;
+        obj.estado = map.estado.nome;
+        $http.post('/Trilha/resources/trilha', obj).success(function () {
             alert('Sucesso ao salvar trilha');
             loadData();
         }).error(function () {

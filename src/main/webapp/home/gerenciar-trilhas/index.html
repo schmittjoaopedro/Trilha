@@ -49,17 +49,17 @@
                     <form role="form" name="myForm">
                         <div class="form-group">
                             <label>Estado</label>
-                            <input type="text" class="form-control" placeholder="Estado" ng-model="map.estado" required>
+                            <input type="text" class="form-control" data-animation="am-flip-x" ng-options="est as est.nome for est in estados" placeholder="Estado" ng-model="map.estado" bs-typeahead required>                            
                         </div>
                         <div class="form-group">
-                            <label>Cidade</label>
-                            <input type="text" class="form-control" placeholder="Cidade" ng-model="map.cidade" required>
+                            <label>Cidade</label>                            
+                            <input type="text" class="form-control" data-animation="am-flip-x" ng-options="cid as cid for cid in getCidades()" placeholder="Cidade" ng-model="map.cidade" ng-disabled="validarEstado()" required bs-typeahead>
                         </div>
                         <div class="form-group">
                             <label>Nome da Trilha</label>
                             <input type="text" class="form-control" placeholder="Nome da Trilha" ng-model="map.nome" required>
                         </div>  
-                        <button type="button" class="btn btn-success" ng-click="salvarTrilha(map)">
+                        <button type="button" class="btn btn-success" ng-disabled="myForm.$invalid" ng-click="salvarTrilha(map)">
                             <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Salvar
                         </button>
                     </form>
