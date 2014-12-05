@@ -18,6 +18,14 @@
     margin-left: 10px;
 }
 
+.publicidade {
+	width: 100%;
+}
+
+.center {
+	text-align: center;
+}
+
 table {
 	background: #f5f5f5;
 	border-collapse: separate;
