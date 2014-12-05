@@ -58,7 +58,6 @@ public class TrilhaServico {
 		List<TrilhaXmlType> trilhaXmlTypes = new ArrayList<TrilhaXmlType>();
 		for(Trilha trilha : trilhas) {
 			TrilhaXmlType trilhaXmlType = TrilhaXmlAdapter.getInstance().unmarshal(trilha);
-			trilhaXmlType.setLocalizacaoGeograficas(null);
 			trilhaXmlTypes.add(trilhaXmlType);
 		}
 		return trilhaXmlTypes;

@@ -44,28 +44,42 @@
         <div class="container container-new-user">
             <div class="row">
                 <div class="col-sm-6">
-                    <canvas id="map"></canvas>
+                    <div id="map"></div>
+                    <br />
+                    <form role="form" name="myForm">
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <input type="text" class="form-control" placeholder="Estado" ng-model="map.estado" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Cidade</label>
+                            <input type="text" class="form-control" placeholder="Cidade" ng-model="map.cidade" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nome da Trilha</label>
+                            <input type="text" class="form-control" placeholder="Nome da Trilha" ng-model="map.nome" required>
+                        </div>  
+                        <button type="button" class="btn btn-success" ng-click="salvarTrilha(map)">
+                            <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Salvar
+                        </button>
+                    </form>
                 </div>
                 <div class="col-sm-6">
                     <table border="1">
                         <thead>
                             <tr>                                
                                 <td>Nome</td>                                
-                                <td>Remover</td>
-                                <td>Modificar</td>
+                                <td>Estado</td>
+                                <td width="100px">Ações</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="evento in eventos| orderBy:'data'">                                
-                                <td>{{evento.nome}}</td>                                
-                                <td>
+                                <td>{{evento.nome}}</td> 
+                                <td>{{evento.estado}}</td>
+                                <td width="100px">
                                     <button type="submit" class="btn-xs btn-danger" ng-click="remover(evento)" >
                                         <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Remover
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="submit" class="btn-xs btn-warning" ng-click="modificar(evento)" >
-                                        <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Modificar
                                     </button>
                                 </td>
                             </tr>
@@ -75,8 +89,8 @@
             </div>
         </div>
     </body>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing"></script>
     <script type="text/javascript" src="../../libs/jquery/jquery.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing"></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../libs/angularjs/js/angular.min.js"></script>                
     <script type="text/javascript" src="../../libs/angular-strap/js/angular-strap.min.js"></script>        

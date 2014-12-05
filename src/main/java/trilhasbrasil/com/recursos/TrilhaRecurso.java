@@ -43,7 +43,7 @@ public class TrilhaRecurso {
 	 * });
 	 * data
 	 * var evento = {
-  	 * id: 1,
+  	 *   id: 1,
 	 *   nome: 'Primeiro Braco',
 	 *   cidade: 'Massaranduba',
 	 *   estado: 'SC',
@@ -76,8 +76,7 @@ public class TrilhaRecurso {
 		}
 	}
 	
-	@GET
-	@RolesAllowed({"Grupo","Administrador"})
+	@GET	
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<TrilhaXmlType> procurarTodasTrilhas() throws Exception {
@@ -103,7 +102,7 @@ public class TrilhaRecurso {
 	}
 	
 	@GET
-	@Path("/{estado}")
+	@Path("/estado/{estado}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<TrilhaXmlType> procurarTrilhasPorEstado(@PathParam("estado") String nomeDoEstado) throws Exception {
@@ -111,7 +110,7 @@ public class TrilhaRecurso {
 	}
 	
 	@GET
-	@Path("/{nome}")
+	@Path("/nome/{nome}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<TrilhaXmlType> procurarTrilhasPorGrupoDeTrilheiro(@PathParam("nome") String nome) throws Exception {

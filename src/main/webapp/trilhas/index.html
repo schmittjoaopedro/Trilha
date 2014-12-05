@@ -9,6 +9,7 @@
         <link rel="icon" href="img/icon.svg">
         <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet" />
     </head>
     <body ng-controller="IndexController" class="ng-cloak">
 
@@ -50,12 +51,14 @@
             </div>
         </nav>                           
         <div class="container container-new-user">
+            <div id="map"></div>
+            <br/>
             <div class="row">
                 <div class="col-sm-3">                                       
                     <input type="text" class="form-control" data-animation="am-flip-x" ng-options="est as est.nome for est in estados" placeholder="Estado" ng-model="form.estado" bs-typeahead>
                 </div>
                 <div class="col-sm-5">
-                    <button type="button" class="btn btn-primary" ng-click="pesquisar()">
+                    <button type="button" class="btn btn-primary" ng-click="loadData(form.estado)">
                         <i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Buscar
                     </button>                        
                 </div>
@@ -71,15 +74,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center" width="100px">2</td>
-                                <td>Trilha de massaranduba</td>
+                            <tr ng-repeat="obj in trilhas">                                
+                                <td class="text-center" width="100px">{{obj.id}}</td>
+                                <td>{{obj.nome}}</td>
                                 <td class="text-center" width="150px">
-                                    <button type="button" class="btn btn-sm btn-primary">
+                                    <button type="button" class="btn btn-sm btn-primary" ng-click="showMap(obj)">
                                         Ver no Mapa
-                                    </button>
+                                    </button>                                     
                                 </td>                                    
-                            </tr>
+                            </tr>                            
                         </tbody>
                     </table>
                 </div>
@@ -93,6 +96,7 @@
         </div>      
         <br>                
         <script type="text/javascript" src="../libs/jquery/jquery.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing"></script>
         <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../libs/angularjs/js/angular.min.js"></script>                
         <script type="text/javascript" src="../libs/angular-strap/js/angular-strap.min.js"></script>        
