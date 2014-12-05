@@ -5,19 +5,10 @@ angular.module("App", ['mgcrea.ngStrap']).controller("IndexController", function
         form: {
             estado: ""
         },
-        estados: [],
         login: "",
         password: "",
         idDetalhes: 0,
         existUser: false
-    });
-
-    $http.get("/Trilha/json/estados.json").success(function (data) {
-        angular.extend($scope, {
-            estados: data
-        });
-    }).error(function (error) {
-        alert("Ocorrou algum erro!");
     });
 
     $http({
@@ -30,18 +21,14 @@ angular.module("App", ['mgcrea.ngStrap']).controller("IndexController", function
         });
     });
 
-    $scope.loadData = function (estado) {
-        if (!angular.isObject(estado)) {
-            return alert("Selecione um estado!");
-        }
-        $http.get("/Trilha/resources/trilha").success(function (data) {
-            angular.extend($scope, {
-                trilhas: data
-            });
-        }).error(function (error) {
-            console.log(error);
+    $http.get("/Trilha/resources/trilha").success(function (data) {
+        angular.extend($scope, {
+            trilhas: data
         });
-    };
+    }).error(function (error) {
+        console.log(error);
+    });
+
 
     $scope.getDate = function (date) {
         date = new Date(date);
@@ -86,9 +73,9 @@ angular.module("App", ['mgcrea.ngStrap']).controller("IndexController", function
         return false;
     };
 
-    $scope.showMap = function (data) {    
+    $scope.showMap = function (data) {
         lastLine && lastLine.setMap && lastLine.setMap(null);
-        processCordenates(data);        
+        processCordenates(data);
     };
 
 
@@ -100,7 +87,7 @@ angular.module("App", ['mgcrea.ngStrap']).controller("IndexController", function
             zoom: 8
         };
 
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);      
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
     }
 
     function processCordenates(data) {
